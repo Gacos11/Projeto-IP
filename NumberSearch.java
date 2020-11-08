@@ -41,12 +41,7 @@ public class NumberSearch{
         int sizeNum = digits(num1);
         int compare = 0;
         int num2reduced = num2;
-        int reducer = 10;
-
-        while(i < sizeNum){
-            reducer = reducer * 10;
-            i++;
-        }
+        int reducer = exponential(10,sizeNum);
 
         if(var){
             while(j < sizeNum){
@@ -72,7 +67,8 @@ public class NumberSearch{
     static int subSequence(int num, int from, int to){
         int b = 0;
 
-        
+
+
         
     }
 }
