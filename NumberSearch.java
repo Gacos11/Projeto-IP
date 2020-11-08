@@ -2,10 +2,10 @@ public class NumberSearch{
 
     public static void main(String[] args){
         System.out.print(isSubsequence(23, 1234));
-        System.out.println(elevation(5,2));
+        System.out.println(exponential(10,2));
     }
 
-    static int elevation(int b, int e){
+    static int exponential(int b, int e){
         int result = b;
         for(int count = 1; count < e; count++){
             result = result * b;
