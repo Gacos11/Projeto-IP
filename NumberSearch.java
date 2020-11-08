@@ -70,6 +70,9 @@ public class NumberSearch{
         return var;
     }
     static int subSequence(int num, int from, int to){
+        int b = 0;
+
+        
         
     }
 }
