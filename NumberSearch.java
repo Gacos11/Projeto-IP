@@ -1,9 +1,7 @@
-import sun.awt.www.content.audio.x_aiff;
-
 public class NumberSearch{
 
     public static void main(String[] args){
-        System.out.print(isSubsequence(12, 1234));
+        System.out.print(subsequence(1234, 2, 4));
     }
 
     static int exponential(int b, int e){
@@ -64,11 +62,15 @@ public class NumberSearch{
         }
         return var;
     }
-    static int subSequence(int num, int from, int to){
-        int b = 0;
+    static int subsequence(int num, int from, int to){
+        int var1 = num;
 
+        var1 = var1%exponential(10, (digits(num)-from+1));
+        System.out.println(exponential(10, (digits(num)-from+1)));
+        System.out.println(var1);
+        var1 = var1/exponential(10, to-from-1);
 
-
+        return var1;
         
     }
 }
