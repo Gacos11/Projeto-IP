@@ -71,6 +71,7 @@ public class NumberSearch{
     }
     int d = 0;
     int a = 0;
+    int aa = 12;
     static int subSequence(int num, int from, int to){
         
     }
