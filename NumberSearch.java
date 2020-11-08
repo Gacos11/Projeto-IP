@@ -1,8 +1,9 @@
+import sun.awt.www.content.audio.x_aiff;
+
 public class NumberSearch{
 
     public static void main(String[] args){
-        System.out.print(isSubsequence(23, 1234));
-        System.out.println(exponential(10,2));
+        System.out.print(isSubsequence(12, 1234));
     }
 
     static int exponential(int b, int e){
@@ -36,18 +37,17 @@ public class NumberSearch{
 
     static boolean isSubsequence(int num1, int num2) {
         boolean var = (num1 <= num2);
-        int i = 1;
-        int j = 0;
+        int i = 0;
         int sizeNum = digits(num1);
         int compare = 0;
         int num2reduced = num2;
         int reducer = exponential(10,sizeNum);
 
         if(var){
-            while(j < sizeNum){
+            while(i < sizeNum){
                 compare = num2reduced%reducer;
                 num2reduced = num2reduced/10;
-                j++;
+                i++;
                 if(compare == num1){
                     var = true;
                     return var;
