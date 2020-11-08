@@ -62,6 +62,8 @@ public class NumberSearch{
         }
         return var;
     }
+    
+    //tem de ser testado. Tenho quase a certeza que está correto
     static int subsequence(int num, int from, int to){
         int var1 = num;
 
@@ -71,4 +73,67 @@ public class NumberSearch{
         return var1;
         
     }
+
+    //tem de ser testado
+    static boolean isValidRow(int num, int numberDigits){
+        boolean var2 = true;
+
+        int i = 1;
+        int numCompare = num;
+
+        if (num <= 0){
+            var2 = false;
+            return var2;
+        }
+        
+        if(digits(num) != numberDigits){
+            var2 = false;
+            return var2;
+        }
+
+        while(i <= digits(num)){
+            numCompare = numCompare%(exponencial(10,k))
+             if(numCompare == 0){
+                 var2 = false;
+                 return var2;
+             }
+            
+            i++;
+        }
+
+        return var2;
+
+    }
+
+    //basicamente igual ao isValidRow mas também tem de ser testado (só muda o sinal do segundo if)
+    static boolean isValidSequence(int num, int numberDigits){
+        boolean var3 = true;
+
+        int i = 1;
+        int numCompare = num;
+
+        if (num <= 0){
+            var3 = false;
+            return var3;
+        }
+        
+        if( digits(num) > numberDigits){
+            var3 = false;
+            return var3;
+        }
+
+        while(i <= digits(num)){
+            numCompare = numCompare%(exponencial(10,k))
+             if(numCompare == 0){
+                 var3 = false;
+                 return var3;
+             }
+            
+            i++;
+        }
+        
+        return var3;
+
+    }
+
 }
