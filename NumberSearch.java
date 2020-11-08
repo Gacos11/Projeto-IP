@@ -66,9 +66,7 @@ public class NumberSearch{
         int var1 = num;
 
         var1 = var1%exponential(10, (digits(num)-from+1));
-        System.out.println(exponential(10, (digits(num)-from+1)));
-        System.out.println(var1);
-        var1 = var1/exponential(10, to-from-1);
+        var1 = var1/exponential(10, (digits(num)-to));
 
         return var1;
         
