@@ -1,7 +1,8 @@
 public class NumberSearch{
 
     public static void main(String[] args){
-        System.out.print(isSubsequence(2345, 123456));
+        System.out.println(isSubsequence(197, 198745334));
+        //checker(9,  198745334, 197);
     }
 
     static int exponential(int b, int e){
@@ -51,11 +52,13 @@ public class NumberSearch{
             while(i < sizeNum){
                 compare = num2reduced%reducer;
                 i++;
-
                 num2reduced = num2reduced/10;
-                
+                System.out.println(num2reduced);
+                System.out.println(compare);
+                System.out.println(num1);
                 if(compare == num1){
                     var = true;
+                    System.out.println("boas");
                     return var;
                 }
                 
@@ -69,7 +72,7 @@ public class NumberSearch{
             var = false;
             return var;
         }
-
+        var = false;
         return var;
     }
     
@@ -134,20 +137,11 @@ public class NumberSearch{
 
         if(isValidRow(row, numberDigits) && isValidSequence(sequence, numberDigits)){
 
-            if(isSubsequence(sequence, row)){
+            if(isSubsequence(sequence, row) || isSubsequence(reverseDigits(sequence), row)){
                 System.out.println("The sequence " +sequence+ " is hidden in row " +row+ ".");
             }
             else{
                 System.out.println("The sequence " +sequence+ " is not hidden in row" +row+ ".");
-            }
-        }
-        if(isValidRow(row, numberDigits) && isValidSequence(sequence, numberDigits)){
-
-            if(isSubsequence(reverseDigits(sequence), row)){
-                System.out.println("The sequence " +sequence+ " is hidden in row " +row+ ".");
-            }
-            else{
-                System.out.println("The sequence " +sequence+ " is not hidden in row " +row+ ".");
             }
         }
         else if((!isValidRow(row, numberDigits)) && (isValidSequence(sequence, numberDigits))){
