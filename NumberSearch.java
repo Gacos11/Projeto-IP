@@ -1,8 +1,7 @@
 public class NumberSearch{
 
     public static void main(String[] args){
-        System.out.println(isSubsequence(197, 198745334));
-        //checker(9,  198745334, 197);
+        checker(9, 19874533, 305);
     }
 
     static int exponential(int b, int e){
@@ -40,39 +39,26 @@ public class NumberSearch{
     }
 
     static boolean isSubsequence(int num1, int num2) {
-        boolean var = (num1 <= num2);
+        boolean var = (num1 > num2);
 
         int i = 0;
         int sizeNum = digits(num1);
         int compare = 0;
         int num2reduced = num2;
         int reducer = exponential(10,sizeNum);
+        int numInteration = digits(num2)-digits(num1)+1;
 
-        if(var){
-            while(i < sizeNum){
+        if(!var){
+            while(i < numInteration){
                 compare = num2reduced%reducer;
-                i++;
                 num2reduced = num2reduced/10;
-                System.out.println(num2reduced);
-                System.out.println(compare);
-                System.out.println(num1);
+                i++;
+
                 if(compare == num1){
                     var = true;
-                    System.out.println("boas");
-                    return var;
-                }
-                
-                else if(digits(num2reduced) == digits(num1) && num2reduced != num1){
-                    var = false;
-                    return var;
                 }
             }
         }
-        else{
-            var = false;
-            return var;
-        }
-        var = false;
         return var;
     }
     
@@ -141,7 +127,7 @@ public class NumberSearch{
                 System.out.println("The sequence " +sequence+ " is hidden in row " +row+ ".");
             }
             else{
-                System.out.println("The sequence " +sequence+ " is not hidden in row" +row+ ".");
+                System.out.println("The sequence " +sequence+ " is not hidden in row " +row+ ".");
             }
         }
         else if((!isValidRow(row, numberDigits)) && (isValidSequence(sequence, numberDigits))){
