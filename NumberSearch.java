@@ -1,7 +1,7 @@
 public class NumberSearch{
 
     public static void main(String[] args){
-        System.out.print(isValidSequence(1234, 3));
+        System.out.print(isSubsequence(2345, 123456));
     }
 
     static int exponential(int b, int e){
@@ -132,5 +132,33 @@ public class NumberSearch{
 
     static void checker(int numberDigits, int row, int sequence){
 
+        if(isValidRow(row, numberDigits) && isValidSequence(sequence, numberDigits)){
+
+            if(isSubsequence(sequence, row)){
+                System.out.println("The sequence " +sequence+ " is hidden in row " +row+ ".");
+            }
+            else{
+                System.out.println("The sequence " +sequence+ " is not hidden in row" +row+ ".");
+            }
+        }
+        if(isValidRow(row, numberDigits) && isValidSequence(sequence, numberDigits)){
+
+            if(isSubsequence(reverseDigits(sequence), row)){
+                System.out.println("The sequence " +sequence+ " is hidden in row " +row+ ".");
+            }
+            else{
+                System.out.println("The sequence " +sequence+ " is not hidden in row " +row+ ".");
+            }
+        }
+        else if((!isValidRow(row, numberDigits)) && (isValidSequence(sequence, numberDigits))){
+            System.out.println("The row " +row+ " is not valid.");
+        }
+        else if((isValidRow(row, numberDigits)) && (!isValidSequence(sequence, numberDigits))){
+            System.out.println("The sequence " +sequence+ " is not valid.");
+        }
+        else{
+            System.out.println("The row " +row+ " is not valid. The sequence " +sequence+ " is not valid.");
+        }
     }
 }
+
