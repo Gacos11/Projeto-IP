@@ -1,8 +1,9 @@
 public class NumberSearch{
 
     public static void main(String[] args){
-        //checker(9, 198745334, 5334);
-        System.out.println(isSubsequence(234, 123456));
+        checker(9, 198745334, 5334);
+        checkSubSequence( 198745334, 6, 8);
+        checkSubSequence( 198745334, 8, 6);
     }
 
     static int exponential(int b, int e){
@@ -53,7 +54,6 @@ public class NumberSearch{
             while(i < numInteration){
                 compare = num2reduced%reducer;
                 num2reduced = num2reduced/10;
-                System.out.println(compare);
                 i++;
 
                 if(compare == num1){
@@ -139,6 +139,15 @@ public class NumberSearch{
         }
         else{
             System.out.println("The row " +row+ " is not valid. The sequence " +sequence+ " is not valid.");
+        }
+    }
+
+    static void checkSubSequence(int row, int from, int to){
+        if(1 <= from && from <= to && to <= digits(row)){
+            System.out.println("The sequence from position " +from+ " to " +to+ " in row " +row+ " is " +subsequence(row, from, to)+ ".");
+        }
+        else{
+            System.out.println("The range from " +from+ " to " +to+ " is not valid in row " +row+ ".");
         }
     }
 }
