@@ -1,9 +1,20 @@
 public class NumberSearch{
 
     public static void main(String[] args){
-        checker(9, 198745334, 5334);
+        int tamanho = 9;
+
+        checker(tamanho, 198745334, 533);
+        checker(tamanho, 198745334, 335);
+        checker(tamanho, 198745334, 5334);
+        checker(tamanho, 198745334, 121);
+        checker(tamanho, 198745334, 335);
+        checker(tamanho, 198745334, 305);
+        checker(tamanho, 198745334, 305);
+
         checkSubSequence( 198745334, 6, 8);
+        checkSubSequence( 198745334, 1, 5);
         checkSubSequence( 198745334, 8, 6);
+        checkSubSequence( 198745334, 6, 12);
     }
 
     static int exponential(int b, int e){
