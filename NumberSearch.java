@@ -24,6 +24,11 @@ public class NumberSearch{
         return (result);
     }
 
+    /**
+     * 
+     * @param num
+     * @return
+     */
     public static int digits(int num){
         int count = 0;
 
@@ -34,6 +39,11 @@ public class NumberSearch{
         return(count);
     }
 
+    /**
+     * 
+     * @param num
+     * @return
+     */
     public static int reverseDigits(int num){
         int reversed = 0;
 
@@ -45,6 +55,12 @@ public class NumberSearch{
         return(reversed);
     }
 
+    /**
+     * 
+     * @param num1
+     * @param num2
+     * @return
+     */
     public static boolean isSubsequence(int num1, int num2) {
         boolean var = (num1 > num2);
         int i = 0;
@@ -65,6 +81,13 @@ public class NumberSearch{
         return var;
     }
     
+    /**
+     * 
+     * @param num
+     * @param from
+     * @param to
+     * @return
+     */
     public static int subsequence(int num, int from, int to){
         int var = num;
 
@@ -74,6 +97,12 @@ public class NumberSearch{
         return var;
     }
 
+    /**
+     * 
+     * @param num
+     * @param numberDigits
+     * @return
+     */
     public static boolean isValidRow(int num, int numberDigits){
         boolean var = true;
         int i = 1;
@@ -91,6 +120,12 @@ public class NumberSearch{
         return var;
     }
 
+    /**
+     * 
+     * @param num
+     * @param numberDigits
+     * @return
+     */
     public static boolean isValidSequence(int num, int numberDigits){
         boolean var = true;
         int i = 1;
@@ -109,6 +144,12 @@ public class NumberSearch{
         return var;
     }
 
+    /**
+     * 
+     * @param numberDigits
+     * @param row
+     * @param sequence
+     */
     public static void checker(int numberDigits, int row, int sequence){
 
         if(isValidRow(row, numberDigits) && isValidSequence(sequence, numberDigits)){
@@ -131,6 +172,12 @@ public class NumberSearch{
         }
     }
 
+    /**
+     * 
+     * @param row
+     * @param from
+     * @param to
+     */
     public static void checkSubsequence(int row, int from, int to){
         if(1 <= from && from <= to && to <= digits(row)){
             System.out.println("The sequence from posizetion " +from+ " to " +to+ " in row " +row+ " is " +subsequence(row, from, to)+ ".");
