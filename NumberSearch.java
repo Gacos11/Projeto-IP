@@ -1,7 +1,8 @@
 public class NumberSearch{
 
     public static void main(String[] args){
-        checker(9, 19874533, 305);
+        //checker(9, 198745334, 5334);
+        System.out.println(isSubsequence(234, 123456));
     }
 
     static int exponential(int b, int e){
@@ -52,6 +53,7 @@ public class NumberSearch{
             while(i < numInteration){
                 compare = num2reduced%reducer;
                 num2reduced = num2reduced/10;
+                System.out.println(compare);
                 i++;
 
                 if(compare == num1){
@@ -75,7 +77,6 @@ public class NumberSearch{
         boolean var2 = true;
 
         int i = 1;
-        int numCompare = num;
 
         if (num <= 0 || digits(num) != numberDigits){
             var2 = false;
@@ -84,7 +85,7 @@ public class NumberSearch{
 
         while(i <= digits(num)){
 
-            if(numCompare%(exponential(10, i)) == numCompare%(exponential(10, i-1))){
+            if(num%(exponential(10, i)) == num%(exponential(10, i-1))){
                 var2 = false;
                 return var2;
             }
