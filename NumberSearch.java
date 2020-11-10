@@ -1,3 +1,8 @@
+/**
+*@author Duarte Ferreira, fc54981
+*@author Vasco Barros, fc54986
+*/
+
 public class NumberSearch{
 
     public static void main(String[] args){
@@ -52,7 +57,6 @@ public class NumberSearch{
 
     static boolean isSubsequence(int num1, int num2) {
         boolean var = (num1 > num2);
-
         int i = 0;
         int reducer = exponential(10, digits(num1));
         int numInteration = digits(num2) - digits(num1) + 1;
@@ -72,59 +76,47 @@ public class NumberSearch{
     }
     
     static int subsequence(int num, int from, int to){
-        int var1 = num;
+        int var = num;
 
-        var1 = var1%exponential(10, (digits(num)-from+1));
-        var1 = var1/exponential(10, (digits(num)-to));
+        var = var%exponential(10, (digits(num)-from+1));
+        var = var/exponential(10, (digits(num)-to));
 
-        return var1;
+        return var;
     }
 
     static boolean isValidRow(int num, int numberDigits){
-        boolean var2 = true;
-
+        boolean var = true;
         int i = 1;
 
         if (num <= 0 || digits(num) != numberDigits){
-            var2 = false;
-            return var2;
+            var = false;
         }
 
         while(i <= digits(num)){
-
             if(num%(exponential(10, i)) == num%(exponential(10, i-1))){
-                var2 = false;
-                return var2;
+                var = false;
             }
             i++;
         }
-
-        return var2;
+        return var;
     }
 
     static boolean isValidSequence(int num, int numberDigits){
-        boolean var3 = true;
-
+        boolean var = true;
         int i = 1;
         int numCompare = num;
 
         if (num <= 0 || digits(num) > numberDigits){
-            var3 = false;
-            return var3;
+            var = false;
         }
 
         while(i <= digits(num)){
-
-             if(numCompare%(exponential(10, i)) == numCompare%(exponential(10, i-1))){
-                 var3 = false;
-                 return var3;
-             }
-            
+            if(numCompare%(exponential(10, i)) == numCompare%(exponential(10, i-1))){
+                var = false;
+            }
             i++;
         }
-        
-        return var3;
-
+        return var;
     }
 
     static void checker(int numberDigits, int row, int sequence){
