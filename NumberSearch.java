@@ -19,13 +19,12 @@ public class NumberSearch{
 
     static int exponential(int b, int e){
         int result = b;
-
-        if(e == 0){
-            result = 1;
-            return result;
-        }
+        
         for(int count = 1; count < e; count++){
             result = result * b;
+        }
+        if(e == 0){
+            result = 1;
         }
         return (result);
     }
@@ -55,16 +54,13 @@ public class NumberSearch{
         boolean var = (num1 > num2);
 
         int i = 0;
-        int sizezeNum = digits(num1);
-        int compare = 0;
-        int num2reduced = num2;
-        int reducer = exponential(10,sizezeNum);
-        int numInteration = digits(num2)-digits(num1)+1;
+        int reducer = exponential(10, digits(num1));
+        int numInteration = digits(num2) - digits(num1) + 1;
 
         if(!var){
             while(i < numInteration){
-                compare = num2reduced%reducer;
-                num2reduced = num2reduced/10;
+                int compare = num2%reducer;
+                num2 = num2/10;
                 i++;
 
                 if(compare == num1){
