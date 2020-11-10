@@ -8,10 +8,10 @@ public class NumberSearch{
      * Calculates the power of a given base and exponent
      * @param b is an integer.
      * @param e is an integer.
-     * @requires b>0; e>=0.
-     * @ensures exponential(b,e) >= 1.
+     * @requires b>0; e>=0.                     VERIFICAR REQUIRES NÃO FUNCIONA QUANDO FEITO EM JAVADOC.
+     * @ensures exponential(b,e) >= 1.          VERIFICAR ENSURES NÃO FUNCIONA QUANDO FEITO EM JAVADOC.
      * @return int This returns b raised to e.
-     */
+    */
     public static int exponential(int b, int e){
         int result = b;
         
