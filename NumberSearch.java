@@ -4,25 +4,15 @@
 */
 
 public class NumberSearch{
-
-    public static void main(String[] args){
-        int size = 9;
-
-        checker(size, 198745334, 533);
-        checker(size, 198745334, 335);
-        checker(size, 198745334, 5334);
-        checker(size, 198745334, 121);
-        checker(size, 19874533, 335);
-        checker(size, 198745334, 305);
-        checker(size, 19874533, 305);
-
-        checkSubSequence( 198745334, 6, 8);
-        checkSubSequence( 198745334, 1, 5);
-        checkSubSequence( 198745334, 8, 6);
-        checkSubSequence( 198745334, 6, 12);
-    }
-
-    static int exponential(int b, int e){
+    /**
+     * Calculates the power of a given base and exponent
+     * @param b is an integer.
+     * @param e is an integer.
+     * @requires b>0; e>=0.
+     * @ensures exponential(b,e) >= 1.
+     * @return int This returns b raised to e.
+     */
+    public static int exponential(int b, int e){
         int result = b;
         
         for(int count = 1; count < e; count++){
@@ -34,7 +24,7 @@ public class NumberSearch{
         return (result);
     }
 
-    static int digits(int num){
+    public static int digits(int num){
         int count = 0;
 
         while(num != 0){
@@ -44,7 +34,7 @@ public class NumberSearch{
         return(count);
     }
 
-    static int reverseDigits(int num){
+    public static int reverseDigits(int num){
         int reversed = 0;
 
         while(num != 0){
@@ -55,7 +45,7 @@ public class NumberSearch{
         return(reversed);
     }
 
-    static boolean isSubsequence(int num1, int num2) {
+    public static boolean isSubsequence(int num1, int num2) {
         boolean var = (num1 > num2);
         int i = 0;
         int reducer = exponential(10, digits(num1));
@@ -75,7 +65,7 @@ public class NumberSearch{
         return var;
     }
     
-    static int subsequence(int num, int from, int to){
+    public static int subsequence(int num, int from, int to){
         int var = num;
 
         var = var%exponential(10, (digits(num)-from+1));
@@ -84,7 +74,7 @@ public class NumberSearch{
         return var;
     }
 
-    static boolean isValidRow(int num, int numberDigits){
+    public static boolean isValidRow(int num, int numberDigits){
         boolean var = true;
         int i = 1;
 
@@ -101,7 +91,7 @@ public class NumberSearch{
         return var;
     }
 
-    static boolean isValidSequence(int num, int numberDigits){
+    public static boolean isValidSequence(int num, int numberDigits){
         boolean var = true;
         int i = 1;
         int numCompare = num;
@@ -119,7 +109,7 @@ public class NumberSearch{
         return var;
     }
 
-    static void checker(int numberDigits, int row, int sequence){
+    public static void checker(int numberDigits, int row, int sequence){
 
         if(isValidRow(row, numberDigits) && isValidSequence(sequence, numberDigits)){
 
@@ -141,12 +131,28 @@ public class NumberSearch{
         }
     }
 
-    static void checkSubSequence(int row, int from, int to){
+    public static void checkSubsequence(int row, int from, int to){
         if(1 <= from && from <= to && to <= digits(row)){
             System.out.println("The sequence from posizetion " +from+ " to " +to+ " in row " +row+ " is " +subsequence(row, from, to)+ ".");
         }
         else{
             System.out.println("The range from " +from+ " to " +to+ " is not valid in row " +row+ ".");
         }
+    }
+    public static void main(String[] args){
+        int size = 9;
+
+        checker(size, 198745334, 533);
+        checker(size, 198745334, 335);
+        checker(size, 198745334, 5334);
+        checker(size, 198745334, 121);
+        checker(size, 19874533, 335);
+        checker(size, 198745334, 305);
+        checker(size, 19874533, 305);
+
+        checkSubsequence( 198745334, 6, 8);
+        checkSubsequence( 198745334, 1, 5);
+        checkSubsequence( 198745334, 8, 6);
+        checkSubsequence( 198745334, 6, 12);
     }
 }
