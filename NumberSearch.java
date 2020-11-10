@@ -1,15 +1,15 @@
 public class NumberSearch{
 
     public static void main(String[] args){
-        int tamanho = 9;
+        int size = 9;
 
-        checker(tamanho, 198745334, 533);
-        checker(tamanho, 198745334, 335);
-        checker(tamanho, 198745334, 5334);
-        checker(tamanho, 198745334, 121);
-        checker(tamanho, 198745334, 335);
-        checker(tamanho, 198745334, 305);
-        checker(tamanho, 198745334, 305);
+        checker(size, 198745334, 533);
+        checker(size, 198745334, 335);
+        checker(size, 198745334, 5334);
+        checker(size, 198745334, 121);
+        checker(size, 19874533, 335);
+        checker(size, 198745334, 305);
+        checker(size, 19874533, 305);
 
         checkSubSequence( 198745334, 6, 8);
         checkSubSequence( 198745334, 1, 5);
@@ -55,10 +55,10 @@ public class NumberSearch{
         boolean var = (num1 > num2);
 
         int i = 0;
-        int sizeNum = digits(num1);
+        int sizezeNum = digits(num1);
         int compare = 0;
         int num2reduced = num2;
-        int reducer = exponential(10,sizeNum);
+        int reducer = exponential(10,sizezeNum);
         int numInteration = digits(num2)-digits(num1)+1;
 
         if(!var){
@@ -155,7 +155,7 @@ public class NumberSearch{
 
     static void checkSubSequence(int row, int from, int to){
         if(1 <= from && from <= to && to <= digits(row)){
-            System.out.println("The sequence from position " +from+ " to " +to+ " in row " +row+ " is " +subsequence(row, from, to)+ ".");
+            System.out.println("The sequence from posizetion " +from+ " to " +to+ " in row " +row+ " is " +subsequence(row, from, to)+ ".");
         }
         else{
             System.out.println("The range from " +from+ " to " +to+ " is not valid in row " +row+ ".");
