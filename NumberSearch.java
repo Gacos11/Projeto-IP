@@ -83,10 +83,10 @@ public class NumberSearch {
     
     /**
      * 
-     * @param num
-     * @param from
-     * @param to
-     * @return
+     * @param num is an integer bigger than zero.
+     * @param from is an integer bigger than zero.
+     * @param to is an integer bigger than zero.
+     * @return 
      */
     public static int subsequence(int num, int from, int to) {
         int var = num;
