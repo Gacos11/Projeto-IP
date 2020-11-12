@@ -64,12 +64,10 @@ public class NumberSearch {
     public static boolean isSubsequence (int num1, int num2) {
         boolean var = (num1 > num2);
         int i = 0;
-        int reducer = exponential (10, digits (num1));
-        int numInteration = digits (num2) - digits (num1) + 1;
 
         if (!var) {
-            while (i < numInteration) {
-                int compare = num2 % reducer;
+            while (i < digits (num2) - digits (num1) + 1) {
+                int compare = num2 % exponential (10, digits (num1));
                 num2 = num2 / 10;
                 i++;
 
