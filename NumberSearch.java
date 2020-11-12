@@ -7,7 +7,7 @@ public class NumberSearch {
     /**
      * Calculates the power of a given base and exponent
      * @param b is an integer bigger than zero.
-     * @param e is an integer bigger than zero.
+     * @param e is an integer bigger or equal to zero.
      * @requires b>0; e>=0.
      * @ensures
      * @return integer This returns b raised to e.
@@ -44,7 +44,7 @@ public class NumberSearch {
     /**
      * 
      * @param num is an integer bigger than zero.
-     * @requires
+     * @requires num > 0.
      * @ensures
      * @return integer Returns the number with the digits in reverse order.
      */
@@ -63,7 +63,7 @@ public class NumberSearch {
      * 
      * @param num1 is an integer bigger than zero.
      * @param num2 is an integer bigger than zero and num1.
-     * @requires
+     * @requires num1 > 0; num2 > 0.
      * @ensures
      * @return boolean Indicates if the digit sequence of num1 is subsequence of the digit sequence of num.
      */
@@ -88,9 +88,9 @@ public class NumberSearch {
     /**
      * 
      * @param num is an integer bigger than zero.
-     * @param from is an integer bigger than zero.
-     * @param to is an integer bigger than zero.
-     * @requires 1 <= "from" <= "to" <= digits(num).
+     * @param from is an integer bigger or equal to 1 and smaller or qual to to.
+     * @param to is an integer bigger than from and smaller than digits(num).
+     * @requires 1 <= "from" <= "to" <= digits(num); num > 0.
      * @ensures
      * @return int Returns the number formed by digits in positions "from" to "to" of num.
      */
@@ -105,9 +105,9 @@ public class NumberSearch {
 
     /**
      * 
-     * @param num is an integer bigger than zero.
+     * @param num is an integer.
      * @param numberDigits is an integer bigger than zero.
-     * @requires num > 0; numberDigits > 0.
+     * @requires numberDigits > 0.
      * @ensures
      * @return
      */
@@ -130,11 +130,11 @@ public class NumberSearch {
 
     /**
      * 
-     * @param num
-     * @param numberDigits
-     * @requires
+     * @param num is an integer.
+     * @param numberDigits is an integer > 0.
+     * @requires numberDigits > 0
      * @ensures
-     * @return
+     * @return boolean Returns if wether the sequence has a maximum number of numDigits digits and if all of its digits are between 1 and 9.
      */
     public static boolean isValidSequence (int num, int numberDigits) {
         boolean var = true;
@@ -156,10 +156,12 @@ public class NumberSearch {
 
     /**
      * 
-     * @param numberDigits
-     * @param row
-     * @param sequence
-     * @require
+     * @param numberDigits is an integer > 0.
+     * @param row is an integer.
+     * @param sequence is an integer.
+     * @requires numberDigits > 0.
+     * @ensures
+     * @return
      */
     public static void checker (int numberDigits, int row, int sequence) {
 
@@ -185,10 +187,10 @@ public class NumberSearch {
 
     /**
      * 
-     * @param row
-     * @param from
-     * @param to
-     * @requires
+     * @param row is an integer > 0.
+     * @param from is an integer.
+     * @param to is an integer.
+     * @requires roa > 0.
      */
     public static void checkSubsequence (int row, int from, int to) {
         if (1 <= from && from <= to && to <= digits(row)) {
