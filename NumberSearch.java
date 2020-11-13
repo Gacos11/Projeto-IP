@@ -107,9 +107,9 @@ public class NumberSearch {
      * 
      * @param num is an integer.
      * @param numberDigits is an integer bigger than zero.
-     * @requires numberDigits > 0.
+     * @requires num > 0; numberDigits > 0.
      * @ensures
-     * @return
+     * @return boolean Return
      */
     public static boolean isValidRow (int num, int numberDigits) {
         boolean var = true;
@@ -160,8 +160,6 @@ public class NumberSearch {
      * @param row is an integer.
      * @param sequence is an integer.
      * @requires numberDigits > 0.
-     * @ensures
-     * @return
      */
     public static void checker (int numberDigits, int row, int sequence) {
 
@@ -190,7 +188,7 @@ public class NumberSearch {
      * @param row is an integer > 0.
      * @param from is an integer.
      * @param to is an integer.
-     * @requires roa > 0.
+     * @requires row > 0.
      */
     public static void checkSubsequence (int row, int from, int to) {
         if (1 <= from && from <= to && to <= digits(row)) {
@@ -210,7 +208,7 @@ public class NumberSearch {
         checker (size, 19874533, 335);
         checker (size, 198745334, 305);
         checker (size, 19874533, 305);
-
+        System.out.println();
         checkSubsequence ( 198745334, 6, 8);
         checkSubsequence ( 198745334, 1, 5);
         checkSubsequence ( 198745334, 8, 6);
