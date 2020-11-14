@@ -1,33 +1,36 @@
 /**
+* Compile:     javac NumberSearch.java
+* Run:         java NumberSearch
+*
 *@author Duarte Ferreira, fc54981
 *@author Vasco Barros, fc54986
 */
 
 public class NumberSearch {
+
     /**
      * Calculates the power of a given base and exponent
-     * @param b is an integer bigger than zero.
-     * @param e is an integer bigger or equal to zero.
-     * @requires b>0; e>=0.
+     * @param base exponential base
+     * @param exponent exponent of the number
+     * @requires base > 0; exponent >= 0
      * @ensures
-     * @return integer This returns b raised to e.
+     * @return integer This returns b raised to e
     */
-    public static int exponential (int b, int e) {
-        int result = b;
+    public static int exponential (int base, int exponent) {
+        int result = base;
         
-        for (int count = 1; count < e; count++) {
-            result = result * b;
+        for (int count = 1; count < exponent; count++) {
+            result = result * base;
         }
-        if (e == 0) {
+        if (exponent == 0) {
             result = 1;
         }
         return result;
     }
 
     /**
-     * 
-     * @param num is an integer bigger than zero.
-     * @requires num > 0.
+     * @param num number to be calculated
+     * @requires num > 0
      * @ensures 
      * @return integer This returns the number of digits in num.
      */
@@ -43,16 +46,16 @@ public class NumberSearch {
 
     /**
      * 
-     * @param num is an integer bigger than zero.
-     * @requires num > 0.
+     * @param num Number to be reversed
+     * @requires num > 0
      * @ensures
-     * @return integer Returns the number with the digits in reverse order.
+     * @return integer Returns the number with the digits in reverse order
      */
     public static int reverseDigits (int num) {
         int reversed = 0;
 
         while ( num != 0) {
-            int digit = num%10;
+            int digit = num % 10;
             reversed = reversed * 10 + digit;
             num = num / 10;
         }   
@@ -61,11 +64,11 @@ public class NumberSearch {
 
     /**
      * 
-     * @param num1 is an integer bigger than zero.
-     * @param num2 is an integer bigger than zero and num1.
-     * @requires num1 > 0; num2 > 0.
+     * @param num1 num1 is the substring to be tested
+     * @param num2 num2 is the string
+     * @requires num1 > 0; num2 > 0
      * @ensures
-     * @return boolean Indicates if the digit sequence of num1 is subsequence of the digit sequence of num.
+     * @return boolean Indicates if the digit sequence of num1 is subsequence of the digit sequence of num2
      */
     public static boolean isSubsequence (int num1, int num2) {
         boolean var = (num1 > num2);
@@ -87,12 +90,12 @@ public class NumberSearch {
     
     /**
      * 
-     * @param num is an integer bigger than zero.
-     * @param from is an integer bigger or equal to 1 and smaller or qual to to.
-     * @param to is an integer bigger than from and smaller than digits(num).
-     * @requires 1 <= "from" <= "to" <= digits(num); num > 0.
+     * @param num num is a number bigger than zero
+     * @param from is an integer bigger than zero and smaller or equal to "to"
+     * @param to is an integer bigger than "from" and smaller than digits(num)
+     * @requires 1 <= "from" <= "to" <= digits(num); num > 0
      * @ensures
-     * @return int Returns the number formed by digits in positions "from" to "to" of num.
+     * @return int Returns the number formed by digits in positions "from" to "to" of num
      */
     public static int subsequence(int num, int from, int to) {
         int var = num;
@@ -105,9 +108,9 @@ public class NumberSearch {
 
     /**
      * 
-     * @param num is an integer.
-     * @param numberDigits is an integer bigger than zero.
-     * @requires num > 0; numberDigits > 0.
+     * @param num num is the row to be tested
+     * @param numberDigits number of num digits
+     * @requires num > 0; numberDigits > 0
      * @ensures
      * @return boolean Return
      */
@@ -130,11 +133,11 @@ public class NumberSearch {
 
     /**
      * 
-     * @param num is an integer.
-     * @param numberDigits is an integer > 0.
+     * @param num num is the sequence to be tested
+     * @param numberDigits number of num digits
      * @requires numberDigits > 0
      * @ensures
-     * @return boolean Returns if wether the sequence has a maximum number of numDigits digits and if all of its digits are between 1 and 9.
+     * @return boolean Returns if wether the sequence has a maximum number of numDigits digits and if all of its digits are between 1 and 9
      */
     public static boolean isValidSequence (int num, int numberDigits) {
         boolean var = true;
@@ -156,10 +159,10 @@ public class NumberSearch {
 
     /**
      * 
-     * @param numberDigits is an integer > 0.
-     * @param row is an integer.
-     * @param sequence is an integer.
-     * @requires numberDigits > 0.
+     * @param numberDigits number of row and sequence digits
+     * @param row is the row to be tested
+     * @param sequence is the sequence to be tested
+     * @requires numberDigits > 0
      */
     public static void checker (int numberDigits, int row, int sequence) {
 
@@ -185,10 +188,10 @@ public class NumberSearch {
 
     /**
      * 
-     * @param row is an integer > 0.
-     * @param from is an integer.
-     * @param to is an integer.
-     * @requires row > 0.
+     * @param num num is a number bigger than zero
+     * @param from is an integer bigger than zero and smaller or equal to "to"
+     * @param to is an integer bigger than "from" and smaller than digits(num)
+     * @requires row > 0
      */
     public static void checkSubsequence (int row, int from, int to) {
         if (1 <= from && from <= to && to <= digits(row)) {
