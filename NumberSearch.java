@@ -204,7 +204,7 @@ public class NumberSearch {
     /**
      * Prints on the screen if from and to are valid and indicates the number made up of digits in that range of positions
      * 
-     * @param num num is a number bigger than zero
+     * @param row row is a number bigger than zero
      * @param from is an integer bigger than zero and smaller or equal to "to"
      * @param to is an integer bigger than "from" and smaller than digits(num)
      * @requires {@code row > 0}
