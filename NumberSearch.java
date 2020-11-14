@@ -14,7 +14,7 @@ public class NumberSearch {
      * @param base exponential base
      * @param exponent exponent of the number
      * @requires {@code base > 0; exponent >= 0}
-     * @ensures
+     * @ensures the int returned is equal to base raised to the power of exponent
      * @return integer This returns the power of a given base and exponent
     */
     private static int exponential (int base, int exponent) {
@@ -34,7 +34,7 @@ public class NumberSearch {
      * 
      * @param num number to be calculated
      * @requires {@code num > 0}
-     * @ensures 
+     * @ensures the int returned is equal to the number of digits in num
      * @return integer This returns the number of digits in num.
      */
     public static int digits (int num) {
@@ -52,7 +52,7 @@ public class NumberSearch {
      * 
      * @param num Number to be reversed
      * @requires {@code num > 0}
-     * @ensures
+     * @ensures the int return is equal to num but all the digits are reversed
      * @return integer Returns the number with the digits in reverse order
      */
     public static int reverseDigits (int num) {
@@ -72,7 +72,7 @@ public class NumberSearch {
      * @param num1 num1 is the substring to be tested
      * @param num2 num2 is the string
      * @requires {@code num1 > 0; num2 > 0}
-     * @ensures
+     * @ensures the boolean is false if num1 isn't a subsequence from num2 and the boolean is true if num1 is a subsequence from num2
      * @return boolean Returns true or false
      */
     public static boolean isSubsequence (int num1, int num2) {
@@ -81,6 +81,8 @@ public class NumberSearch {
 
         if (!var) {
             while (i < digits (num2) - digits (num1) + 1) {
+                //By using % we get the last digits from num2 and then compare that to num1
+                //If the last digits aren't equal to num1 we cut the last digit and use % again so we get the last digits, not counting the original last
                 int compare = num2 % exponential (10, digits (num1));
                 num2 = num2 / 10;
                 i++;
@@ -100,12 +102,13 @@ public class NumberSearch {
      * @param from is an integer bigger than zero and smaller or equal to "to"
      * @param to is an integer bigger than "from" and smaller than digits(num)
      * @requires {@code 1 <= "from" <= "to" <= digits(num); num > 0}
-     * @ensures
+     * @ensures the return is a subsequence from a certain digit in num to another certain digit in num
      * @return int Returns the number formed by digits in positions "from" to "to" of num
      */
     public static int subsequence(int num, int from, int to) {
         int var = num;
-
+        //Removes the first digits that aren't wanted, so all we have left is a numver wich stars at from
+        //Removes the last digits that aren't wanted, so all we have left the subsequence
         var = var % exponential (10, (digits(num) -from +1));
         var = var / exponential (10, (digits(num) - to));
 
@@ -118,7 +121,7 @@ public class NumberSearch {
      * @param num num is the row to be tested
      * @param numberDigits number of num digits
      * @requires {@code num > 0; numberDigits > 0}
-     * @ensures
+     * @ensures the boolean is false if the row isn't valid and the boolean is true if the row is valid
      * @return boolean Returns true or false
      */
     public static boolean isValidRow (int num, int numberDigits) {
@@ -147,7 +150,7 @@ public class NumberSearch {
      * @param num num is the sequence to be tested
      * @param numberDigits number of num digits
      * @requires {@code num > 0; numberDigits > 0}
-     * @ensures
+     * @ensures the boolean is false if the sequence isn't valid and the boolean is true if the sequence is valid
      * @return boolean Returns true or false
      */
     public static boolean isValidSequence (int num, int numberDigits) {
