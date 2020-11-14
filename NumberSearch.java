@@ -10,6 +10,7 @@ public class NumberSearch {
 
     /**
      * Calculates the power of a given base and exponent
+     * 
      * @param base exponential base
      * @param exponent exponent of the number
      * @requires base > 0; exponent >= 0
@@ -29,6 +30,8 @@ public class NumberSearch {
     }
 
     /**
+     * Calculates the number of digits of a given number
+     * 
      * @param num number to be calculated
      * @requires num > 0
      * @ensures 
@@ -45,6 +48,7 @@ public class NumberSearch {
     }
 
     /**
+     * Does the reverse of a given number
      * 
      * @param num Number to be reversed
      * @requires num > 0
@@ -63,12 +67,13 @@ public class NumberSearch {
     }
 
     /**
+     * Indicates whether the digit sequence of num1 is a subsequence of the digit sequence of num2
      * 
      * @param num1 num1 is the substring to be tested
      * @param num2 num2 is the string
      * @requires num1 > 0; num2 > 0
      * @ensures
-     * @return boolean Indicates if the digit sequence of num1 is subsequence of the digit sequence of num2
+     * @return boolean Returns true or false
      */
     public static boolean isSubsequence (int num1, int num2) {
         boolean var = (num1 > num2);
@@ -89,6 +94,7 @@ public class NumberSearch {
     }
     
     /**
+     * Calculates the number formed by digits in positions "from" to "to" of a number
      * 
      * @param num num is a number bigger than zero
      * @param from is an integer bigger than zero and smaller or equal to "to"
@@ -107,12 +113,13 @@ public class NumberSearch {
     }
 
     /**
+     * Checks whether a number is positive, has numberDigits digits and consists of digits between 1 and 9
      * 
      * @param num num is the row to be tested
      * @param numberDigits number of num digits
      * @requires num > 0; numberDigits > 0
      * @ensures
-     * @return boolean Return
+     * @return boolean Returns true or false
      */
     public static boolean isValidRow (int num, int numberDigits) {
         boolean var = true;
@@ -132,12 +139,13 @@ public class NumberSearch {
     }
 
     /**
+     * Checks whether a number is positive, maximum numberDigits digits and consists of digits between 1 and 9.
      * 
      * @param num num is the sequence to be tested
      * @param numberDigits number of num digits
-     * @requires numberDigits > 0
+     * @requires num > 0; numberDigits > 0
      * @ensures
-     * @return boolean Returns if wether the sequence has a maximum number of numDigits digits and if all of its digits are between 1 and 9
+     * @return boolean Returns true or false
      */
     public static boolean isValidSequence (int num, int numberDigits) {
         boolean var = true;
@@ -158,11 +166,12 @@ public class NumberSearch {
     }
 
     /**
+     * Prints on the screen whether row and sequence are valid or not
      * 
      * @param numberDigits number of row and sequence digits
      * @param row is the row to be tested
      * @param sequence is the sequence to be tested
-     * @requires numberDigits > 0
+     * @requires numberDigits > 0; row > 0; sequence > 0
      */
     public static void checker (int numberDigits, int row, int sequence) {
 
@@ -187,6 +196,7 @@ public class NumberSearch {
     }
 
     /**
+     * Prints on the screen if from and to are valid and indicates the number made up of digits in that range of positions
      * 
      * @param num num is a number bigger than zero
      * @param from is an integer bigger than zero and smaller or equal to "to"
