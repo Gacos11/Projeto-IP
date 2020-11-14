@@ -13,7 +13,7 @@ public class NumberSearch {
      * 
      * @param base exponential base
      * @param exponent exponent of the number
-     * @requires base > 0; exponent >= 0
+     * @requires {@code base > 0; exponent >= 0}
      * @ensures
      * @return integer This returns b raised to e
     */
@@ -33,7 +33,7 @@ public class NumberSearch {
      * Calculates the number of digits of a given number
      * 
      * @param num number to be calculated
-     * @requires num > 0
+     * @requires {@code num > 0}
      * @ensures 
      * @return integer This returns the number of digits in num.
      */
@@ -51,7 +51,7 @@ public class NumberSearch {
      * Does the reverse of a given number
      * 
      * @param num Number to be reversed
-     * @requires num > 0
+     * @requires {@code num > 0}
      * @ensures
      * @return integer Returns the number with the digits in reverse order
      */
@@ -71,7 +71,7 @@ public class NumberSearch {
      * 
      * @param num1 num1 is the substring to be tested
      * @param num2 num2 is the string
-     * @requires num1 > 0; num2 > 0
+     * @requires {@code num1 > 0; num2 > 0}
      * @ensures
      * @return boolean Returns true or false
      */
@@ -99,7 +99,7 @@ public class NumberSearch {
      * @param num num is a number bigger than zero
      * @param from is an integer bigger than zero and smaller or equal to "to"
      * @param to is an integer bigger than "from" and smaller than digits(num)
-     * @requires 1 <= "from" <= "to" <= digits(num); num > 0
+     * @requires {@code 1 <= "from" <= "to" <= digits(num); num > 0}
      * @ensures
      * @return int Returns the number formed by digits in positions "from" to "to" of num
      */
@@ -117,7 +117,7 @@ public class NumberSearch {
      * 
      * @param num num is the row to be tested
      * @param numberDigits number of num digits
-     * @requires num > 0; numberDigits > 0
+     * @requires {@code num > 0; numberDigits > 0}
      * @ensures
      * @return boolean Returns true or false
      */
@@ -146,7 +146,7 @@ public class NumberSearch {
      * 
      * @param num num is the sequence to be tested
      * @param numberDigits number of num digits
-     * @requires num > 0; numberDigits > 0
+     * @requires {@code num > 0; numberDigits > 0}
      * @ensures
      * @return boolean Returns true or false
      */
@@ -177,7 +177,7 @@ public class NumberSearch {
      * @param numberDigits number of row and sequence digits
      * @param row is the row to be tested
      * @param sequence is the sequence to be tested
-     * @requires numberDigits > 0; row > 0; sequence > 0
+     * @requires {@code numberDigits > 0; row > 0; sequence > 0}
      */
     public static void checker (int numberDigits, int row, int sequence) {
 
@@ -207,7 +207,7 @@ public class NumberSearch {
      * @param num num is a number bigger than zero
      * @param from is an integer bigger than zero and smaller or equal to "to"
      * @param to is an integer bigger than "from" and smaller than digits(num)
-     * @requires row > 0
+     * @requires {@code row > 0}
      */
     public static void checkSubsequence (int row, int from, int to) {
         if (1 <= from && from <= to && to <= digits(row)) {
