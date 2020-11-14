@@ -17,7 +17,7 @@ public class NumberSearch {
      * @ensures
      * @return integer This returns b raised to e
     */
-    public static int exponential (int base, int exponent) {
+    private static int exponential (int base, int exponent) {
         int result = base;
         
         for (int count = 1; count < exponent; count++) {
