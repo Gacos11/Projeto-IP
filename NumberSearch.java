@@ -130,6 +130,9 @@ public class NumberSearch {
         }
 
         while (i <= digits(num)) {
+
+            //See if the rest of numCompare by a power of base 10 is equal to the rest of numCompare by the same power by subtracting the exponent 1
+            //If it is equal, it is because it has a zero
             if (num % (exponential(10, i)) == num % (exponential (10, i - 1))) {
                 var = false;
             }
