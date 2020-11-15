@@ -13,7 +13,7 @@ public class NumberSearch {
      * 
      * @param base exponential base
      * @param exponent exponent of the number
-     * @requires {@code base > 0; exponent >= 0}
+     * @requires {@code base > 0 && exponent >= 0}
      * @ensures the int returned is equal to base raised to the power of exponent
      * @return integer This returns the power of a given base and exponent
     */
@@ -71,8 +71,9 @@ public class NumberSearch {
      * 
      * @param num1 num1 is the substring to be tested
      * @param num2 num2 is the string
-     * @requires {@code num1 > 0; num2 > 0}
-     * @ensures the boolean is false if num1 isn't a subsequence from num2 and the boolean is true if num1 is a subsequence from num2
+     * @requires {@code num1 > 0 && num2 > 0}
+     * @ensures the boolean is false if num1 isn't a subsequence from num2 and the boolean is true 
+     * if num1 is a subsequence from num2
      * @return boolean Returns true or false
      */
     public static boolean isSubsequence (int num1, int num2) {
@@ -81,9 +82,9 @@ public class NumberSearch {
 
         if (!var) {
             while (i < digits (num2) - digits (num1) + 1) {
-                //By using % we get the last digits from num2 and then compare that to num1
-                //If the last digits aren't equal to num1 we cut the last digit and use % again so we get the last digits, not counting the original last
+                //Gets the last digits from num2
                 int compare = num2 % exponential (10, digits (num1));
+                //removes the last digit from num2
                 num2 = num2 / 10;
                 i++;
 
@@ -101,27 +102,31 @@ public class NumberSearch {
      * @param num num is a number bigger than zero
      * @param from is an integer bigger than zero and smaller or equal to "to"
      * @param to is an integer bigger than "from" and smaller than digits(num)
-     * @requires {@code 1 <= "from" <= "to" <= digits(num); num > 0}
-     * @ensures the return is a subsequence from a certain digit in num to another certain digit in num
+     * @requires {@code 1 <= "from" <= "to" <= digits(num) && num > 0}
+     * @ensures the return is a subsequence from a certain digit in num to another digit in num
      * @return int Returns the number formed by digits in positions "from" to "to" of num
      */
     public static int subsequence(int num, int from, int to) {
         int var = num;
-        //Removes the first digits that aren't wanted, so all we have left is a numver wich stars at from
+
+        //Removes the first digits that aren't wanted, so all we have left is a numver wich starts
+        // at from
+        var = var % exponential (10, (digits(num) - from + 1));
         //Removes the last digits that aren't wanted, so all we have left the subsequence
-        var = var % exponential (10, (digits(num) -from +1));
         var = var / exponential (10, (digits(num) - to));
 
         return var;
     }
 
     /**
-     * Checks whether a number is positive, has numberDigits digits and consists of digits between 1 and 9
+     * Checks whether a number is positive, has numberDigits digits and consists of digits
+     *  between 1 and 9
      * 
      * @param num num is the row to be tested
      * @param numberDigits number of num digits
-     * @requires {@code num > 0; numberDigits > 0}
-     * @ensures the boolean is false if the row isn't valid and the boolean is true if the row is valid
+     * @requires {@code num > 0 && numberDigits > 0}
+     * @ensures the boolean is false if the row isn't valid and the boolean is true if the row is
+     *  valid
      * @return boolean Returns true or false
      */
     public static boolean isValidRow (int num, int numberDigits) {
@@ -134,7 +139,8 @@ public class NumberSearch {
 
         while (i <= digits(num)) {
 
-            //See if the rest of numCompare by a power of base 10 is equal to the rest of numCompare by the same power by subtracting the exponent 1
+            //See if the rest of numCompare by a power of base 10 is equal to the rest of 
+            //numCompare by the same power by subtracting the exponent 1
             //If it is equal, it is because it has a zero
             if (num % (exponential(10, i)) == num % (exponential (10, i - 1))) {
                 var = false;
@@ -145,12 +151,14 @@ public class NumberSearch {
     }
 
     /**
-     * Checks whether a number is positive, maximum numberDigits digits and consists of digits between 1 and 9.
+     * Checks whether a number is positive, maximum numberDigits digits and consists of digits
+     *  between 1 and 9.
      * 
      * @param num num is the sequence to be tested
      * @param numberDigits number of num digits
-     * @requires {@code num > 0; numberDigits > 0}
-     * @ensures the boolean is false if the sequence isn't valid and the boolean is true if the sequence is valid
+     * @requires {@code num > 0 && numberDigits > 0}
+     * @ensures the boolean is false if the sequence isn't valid and the boolean is true if the
+     * sequence is valid
      * @return boolean Returns true or false
      */
     public static boolean isValidSequence (int num, int numberDigits) {
@@ -164,7 +172,9 @@ public class NumberSearch {
 
         while (i <= digits (num)) {
 
-            //See if the rest of numCompare by a power of base 10 is equal to the rest of numCompare by the same power by subtracting the exponent 1
+            //See if the rest of numCompare by a power of base 10 is equal to the rest of
+            //numCompare
+            //by the same exponent minus 1
             //If it is equal, it is because it has a zero
             if (numCompare % (exponential (10, i)) == numCompare % (exponential (10, i - 1))) {
                 var = false;
@@ -180,32 +190,35 @@ public class NumberSearch {
      * @param numberDigits number of row and sequence digits
      * @param row is the row to be tested
      * @param sequence is the sequence to be tested
-     * @requires {@code numberDigits > 0; row > 0; sequence > 0}
+     * @requires {@code numberDigits > 0 && row > 0 && sequence > 0}
      */
     public static void checker (int numberDigits, int row, int sequence) {
 
         if (isValidRow (row, numberDigits) && isValidSequence (sequence, numberDigits)) {
 
             if (isSubsequence (sequence, row) || isSubsequence (reverseDigits (sequence), row)) {
-                System.out.println ("The sequence " +sequence+ " is hidden in row " +row+ ".");
+                System.out.println ("The sequence " + sequence + " is hidden in row " + row + ".");
             }
             else {
-                System.out.println ("The sequence " +sequence+ " is not hidden in row " +row+ ".");
+                System.out.println ("The sequence " + sequence + " is not hidden in row " + row +
+                 ".");
             }
         }
         else if ((!isValidRow (row, numberDigits)) && (isValidSequence (sequence, numberDigits))) {
             System.out.println ("The row " +row+ " is not valid.");
         }
         else if ((isValidRow (row, numberDigits)) && (!isValidSequence (sequence, numberDigits))) {
-            System.out.println ("The sequence " +sequence+ " is not valid.");
+            System.out.println ("The sequence " + sequence + " is not valid.");
         }
         else {
-            System.out.println ("The row " +row+ " is not valid. The sequence " +sequence+ " is not valid.");
+            System.out.println ("The row " + row + " is not valid. The sequence " + sequence + 
+            " is not valid.");
         }
     }
 
     /**
-     * Prints on the screen if from and to are valid and indicates the number made up of digits in that range of positions
+     * Prints on the screen if from and to are valid and indicates the number made up of digits in
+      that range of positions
      * 
      * @param row row is a number bigger than zero
      * @param from is an integer bigger than zero and smaller or equal to "to"
@@ -214,10 +227,12 @@ public class NumberSearch {
      */
     public static void checkSubsequence (int row, int from, int to) {
         if (1 <= from && from <= to && to <= digits(row)) {
-            System.out.println ("The sequence from posizetion " +from+ " to " +to+ " in row " +row+ " is " +subsequence (row, from, to)+ ".");
+            System.out.println ("The sequence from posizetion " + from + " to " + to + " in row "
+             + row + " is " + subsequence (row, from, to)+ ".");
         }
         else {
-            System.out.println ("The range from " +from+ " to " +to+ " is not valid in row " +row+ ".");
+            System.out.println ("The range from " + from + " to " + to + " is not valid in row "
+            + row + ".");
         }
     }
     public static void main (String[] args) {
