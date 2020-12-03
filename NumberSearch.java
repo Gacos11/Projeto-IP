@@ -252,3 +252,4 @@ public class NumberSearch {
         checkSubsequence ( 198745334, 6, 12);
     }
 }
+.
