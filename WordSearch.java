@@ -6,12 +6,11 @@
 *@author Vasco Barros, fc54986
 */
 
+
 public class WordSearch {
 
     public static void main (String [] args){
-        System.out.println(puzz)
-        System.out.println(isHidden())
-    }
+    }   
 
     public static boolean isHidden (char[][] board, String word){
 
@@ -38,7 +37,7 @@ public class WordSearch {
         return isHidden;
     }
 
-    public static boolean isValidGame (char[][] board, String[] hiddenWords){
+    public static boolean isValidGame(char[][] board, String[] hiddenWords){
 
     }
 }
