@@ -11,45 +11,52 @@ public class WordSearch {
 
     public static void main (String [] args){
         PuzzleReader puzzle = new PuzzleReader(args[0]);
-        char [][] puzzle1 = puzzle.getPuzzle();
-        System.out.println(isHidden(puzzle1, "PROGRAMACAO"));
-        /* for (int i=0; i<puzzle1.length; i++){
-            System.out.println(puzzle1[i]);
-            for (int j=0; j<puzzle1[i].length; j++){
-                System.out.println(puzzle1[i][j]);
-            }
-        } */
+        char [][] board = puzzle.getPuzzle();
+        String[] hiddenWords = puzzle.getHiddenWords();
+        System.out.println(isValidGame(board, hiddenWords));
+        
     }  
 
-    public static boolean isHidden (char[][] board, String word){
+    private static String reverseString(String word){
+        
+        String reversedWord = "";
 
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversedWord = reversedWord + word.charAt(i);
+        }
+        return reversedWord;
+    }
+
+    public static boolean isHidden (char[][] board, String word){
         
         boolean isHidden = false;
-        //System.out.println(board[0].length);
-        for (int lin=0; lin<board.length; lin++){
-
-            String line = String.valueOf(board[lin]);
-            int intIndex = line.indexOf(word);
-            
-            if (intIndex != -1){
+        for (char[] row : board) {
+            if (new String(row).contains(word) || new String(row).contains(reverseString(word))) {
                 isHidden = true;
             }
-
-
-            for (int col=0; col<board[lin].length; col++){
-                StringBuilder column = new StringBuilder(board[lin][col]);
-                intIndex = column.indexOf(word);
-
-                if(intIndex != -1){
+        }
+        for (int i = 0; i<board[0].length; i++){
+            StringBuilder column = new StringBuilder();
+            for (int j = 0; j<board.length; j++){
+                column.append(board[j][i]);
+                String columnString = new String(column);
+                if (columnString.contains(word) || columnString.contains(reverseString(word))){
                     isHidden = true;
                 }
             }
         }
-
         return isHidden;
     }
 
-    /* public static boolean isValidGame(char[][] board, String[] hiddenWords){
-
-    } */
+    public static boolean isValidGame(char[][] board, String[] hiddenWords){
+        
+        boolean isValidGame = true;
+        
+        for (int i = 0; i<hiddenWords.length; i++){
+            if (!isHidden(board, hiddenWords[i])){
+                isValidGame = false;
+            }
+        }
+        return isValidGame;
+    }
 }
