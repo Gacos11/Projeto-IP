@@ -12,16 +12,39 @@ import java.util.Scanner;
 public class WordSearch {
 
     public static void main (String [] args){
+    	
     	Scanner sc = new Scanner(System.in);
-        PuzzleReader puzzle = new PuzzleReader(args[0]);
-        char [][] board = puzzle.getPuzzle();
-        String[] hiddenWords = puzzle.getHiddenWords();
-        //System.out.println(isValidGame(board, hiddenWords)); 
-        //System.out.print(readMove(sc, 20, 15));
-        System.out.println(findWord(board, readMove(sc, 20, 15), hiddenWords));
-        //printPuzzle(board, hiddenWords);
+    	PuzzleReader puzzle = new PuzzleReader(args[0]);
+    	boolean isPuzzleAvailable = puzzle.isPuzzleAvailable();
         
-        
+        if (isPuzzleAvailable) {
+        	char [][] board = puzzle.getPuzzle();
+        	String[] hiddenWords = puzzle.getHiddenWords();
+        	
+        	if (isValidGame(board, hiddenWords)) {
+        		String wordsFound = "";
+        		printPuzzle(board, hiddenWords);
+        		int notFinished = hiddenWords.length;
+        		
+        		do {
+        			System.out.println();
+        			wordsFound = wordsFound + findWord(board, readMove(sc, board.length, board[0].length), hiddenWords) + " ";
+        			notFinished = notFinished - 1;
+        			System.out.println("Found words: " +wordsFound);
+        			System.out.println("Hidden words: " +notFinished);
+        			
+        		}while(notFinished != 0);
+        		
+        		System.out.println();
+        		System.out.println("Good work. All hidden words were found.");
+        	}
+        	else {
+        		System.out.println("Error: One or more of the hidden words isn't present in the puzzle.");
+        	}
+        }
+        else {
+        	System.out.println(puzzle.getErrorMsgs());
+        }
     }  
 
     private static String reverseString(String word){
@@ -101,19 +124,20 @@ public class WordSearch {
     	int [] move = new int[4];
     	
     	do {
-    		
-    		System.out.println("Give your move: ");
+    		System.out.print("Give your move: ");
     		
     		for (int i = 0; i < 4; i++) {
     			move[i] = sc.nextInt();
     		}
     		
-    		if (isValidMove(move, rows, columns)) 
+    		if (isValidMove(move, rows, columns)) {
     			isValid = true;
+    		}
     		
-    		else
+    		else {
     			System.out.println("Your move is invalid.");
-    		
+    			System.out.println();
+    		}
     		
     	}while(!isValid);
     	
@@ -131,21 +155,29 @@ public class WordSearch {
     			line = String.valueOf(board[move[0] - 1]);
     			line = line.substring(move[1] - 1, move[3]);
     			
-    			if (line.equals(hiddenWord) || reverseString(line).equals(hiddenWord))
+    			if (line.equals(hiddenWord)) {
     				wordFound = line;
+    			}
+    			else if (reverseString(line).equals(hiddenWord)) {
+    				wordFound = reverseString(line);
+    			}
     		}
     	
     		else if (move[1] == move [3]){
     			
-    			StringBuilder column = new StringBuilder();
+    			StringBuilder sb = new StringBuilder();
     			
     			for (int i = move[0]; i <= move[2]; i++) {
-    				column.append(board[i - 1] [move[1] - 1]);
+    				sb.append(board[i - 1] [move[1] - 1]);
     			}
-    			String column1 = column.toString();
+    			String column = sb.toString();
     			
-    			if (column1.equals(hiddenWord) || reverseString(column1).equals(hiddenWord))
-    				wordFound = column1;
+    			if (column.equals(hiddenWord)) {
+    				wordFound = column;
+    			}
+    			else if (reverseString(column).equals(hiddenWord)) {
+    				wordFound = reverseString(column);
+    			}
     		}
     	}
     	return wordFound;
@@ -155,20 +187,24 @@ public class WordSearch {
     	System.out.print("   ");
     	
     	for (int i = 1; i <= board[0].length; i++) {
-    		if (i < 10) 
+    		if (i < 10) {
     			System.out.print(i + "  ");
-    		else
+    		}
+    		else {
     			System.out.print(i + " ");
+    		}
     	}
     	
     	System.out.println();
     	
     	for (int i = 0; i<board.length; i++){
     		
-    		if (i < 9) 
+    		if (i < 9) {
     			System.out.print((i + 1) + "  ");
-    		else
+    		}
+    		else {
     			System.out.print((i + 1) + " ");
+    		}
             
     		for (int j = 0; j<board[i].length; j++){
             	System.out.print(board[i][j] + "  ");
