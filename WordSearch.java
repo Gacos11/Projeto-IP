@@ -146,7 +146,7 @@ public class WordSearch {
     
     public static String findWord (char[][] board, int [] move, String[] hiddenWords) {
     	
-    	String line = new String();
+    	String line;
     	String wordFound = null;
     	
     	for (String hiddenWord : hiddenWords) {
