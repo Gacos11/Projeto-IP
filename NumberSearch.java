@@ -14,7 +14,7 @@ public class NumberSearch {
      * @param base exponential base
      * @param exponent exponent of the number
      * @requires {@code base > 0 && exponent >= 0}
-     * @ensures the int returned is equal to base raised to the power of exponent
+     * @ensures the integer returned is equal to base raised to the power of exponent
      * @return integer This returns the power of a given base and exponent
     */
     private static int exponential (int base, int exponent) {

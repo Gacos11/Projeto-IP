@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
 * Compile:     javac WordSearch.java
 * Run:         java WordSearch
@@ -10,10 +12,15 @@
 public class WordSearch {
 
     public static void main (String [] args){
+    	Scanner sc = new Scanner(System.in);
         PuzzleReader puzzle = new PuzzleReader(args[0]);
         char [][] board = puzzle.getPuzzle();
         String[] hiddenWords = puzzle.getHiddenWords();
-        System.out.println(isValidGame(board, hiddenWords));
+        //System.out.println(isValidGame(board, hiddenWords)); 
+        //System.out.print(readMove(sc, 20, 15));
+        System.out.println(findWord(board, readMove(sc, 20, 15), hiddenWords));
+        //printPuzzle(board, hiddenWords);
+        
         
     }  
 
@@ -35,7 +42,8 @@ public class WordSearch {
                 isHidden = true;
             }
         }
-        for (int i = 0; i<board[0].length; i++){
+        
+        for (int i = 0; i<board[i].length; i++){
             StringBuilder column = new StringBuilder();
             for (int j = 0; j<board.length; j++){
                 column.append(board[j][i]);
@@ -48,7 +56,7 @@ public class WordSearch {
         return isHidden;
     }
 
-    public static boolean isValidGame(char[][] board, String[] hiddenWords){
+    public static boolean isValidGame (char[][] board, String[] hiddenWords){
         
         boolean isValidGame = true;
         
@@ -58,5 +66,116 @@ public class WordSearch {
             }
         }
         return isValidGame;
+    }
+    
+    public static boolean isValidMove (int[] move, int rows, int columns) {
+    	
+    	boolean isValid = true;
+    	
+    	if (move.length != 4) {
+    		isValid = false;
+    	}
+    	
+    	if (move[0] < 0 || move[0] > rows || move[0] > move[2]) {
+    		isValid = false;
+    		}
+    	
+    	if (move[1] < 0 || move[1] > columns || move[1] > move[3]) {
+    		isValid = false;
+    	}
+    	
+    	if (move[2] < 0 || move[2] > rows) {
+    		isValid = false;
+    	}
+    	
+    	if (move[3] < 0 || move[3] > columns) {
+    		isValid = false;
+    	}
+    	
+    	return isValid;
+    }
+    
+    public static int [] readMove(Scanner sc, int rows, int columns) {
+    	
+    	boolean isValid = false;
+    	int [] move = new int[4];
+    	
+    	do {
+    		
+    		System.out.println("Give your move: ");
+    		
+    		for (int i = 0; i < 4; i++) {
+    			move[i] = sc.nextInt();
+    		}
+    		
+    		if (isValidMove(move, rows, columns)) 
+    			isValid = true;
+    		
+    		else
+    			System.out.println("Your move is invalid.");
+    		
+    		
+    	}while(!isValid);
+    	
+    	return move;
+    }
+    
+    public static String findWord (char[][] board, int [] move, String[] hiddenWords) {
+    	
+    	String line = new String();
+    	String wordFound = null;
+    	
+    	for (String hiddenWord : hiddenWords) {
+
+    		if (move[0] == move [2]) {
+    			line = String.valueOf(board[move[0] - 1]);
+    			line = line.substring(move[1] - 1, move[3]);
+    			
+    			if (line.equals(hiddenWord) || reverseString(line).equals(hiddenWord))
+    				wordFound = line;
+    		}
+    	
+    		else if (move[1] == move [3]){
+    			
+    			StringBuilder column = new StringBuilder();
+    			
+    			for (int i = move[0]; i <= move[2]; i++) {
+    				column.append(board[i - 1] [move[1] - 1]);
+    			}
+    			String column1 = column.toString();
+    			
+    			if (column1.equals(hiddenWord) || reverseString(column1).equals(hiddenWord))
+    				wordFound = column1;
+    		}
+    	}
+    	return wordFound;
+    }
+    public static void printPuzzle (char[][] board, String [] hiddenWords) {
+    	
+    	System.out.print("   ");
+    	
+    	for (int i = 1; i <= board[0].length; i++) {
+    		if (i < 10) 
+    			System.out.print(i + "  ");
+    		else
+    			System.out.print(i + " ");
+    	}
+    	
+    	System.out.println();
+    	
+    	for (int i = 0; i<board.length; i++){
+    		
+    		if (i < 9) 
+    			System.out.print((i + 1) + "  ");
+    		else
+    			System.out.print((i + 1) + " ");
+            
+    		for (int j = 0; j<board[i].length; j++){
+            	System.out.print(board[i][j] + "  ");
+            }
+            System.out.println();
+        }
+    	System.out.println();
+    	System.out.println("Hidden words: " +hiddenWords.length);
     }
 }
