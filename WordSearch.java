@@ -32,8 +32,10 @@ public class WordSearch {
         			do {
         				
         				System.out.println();
-        				wordFound = findWord(board, readMove(sc, board.length, board[0].length), hiddenWords);
-        				System.out.println(wordFound);
+						wordFound = findWord(board, readMove(sc, board.length, board[0].length), hiddenWords);
+						if (wordFound.contains("null")){
+							System.out.println("The move doesn't correspond to a hidden word.");
+						}
         				
         			}while(wordFound.contains("null"));
         			
