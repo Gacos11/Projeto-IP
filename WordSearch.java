@@ -22,13 +22,22 @@ public class WordSearch {
         	String[] hiddenWords = puzzle.getHiddenWords();
         	
         	if (isValidGame(board, hiddenWords)) {
-        		String wordsFound = "";
+        		
         		printPuzzle(board, hiddenWords);
         		int notFinished = hiddenWords.length;
+        		String wordFound; String wordsFound = "";
         		
         		do {
-        			System.out.println();
-        			wordsFound = wordsFound + findWord(board, readMove(sc, board.length, board[0].length), hiddenWords) + " ";
+        			do {
+        				
+        				System.out.println();
+        				wordFound = "";
+        				wordFound = findWord(board, readMove(sc, board.length, board[0].length), hiddenWords);
+        				System.out.println(wordFound);
+        				
+        			}while(wordFound.contains("null"));
+        			
+        			wordsFound = wordsFound + wordFound + " ";
         			notFinished = notFinished - 1;
         			System.out.println("Found words: " +wordsFound);
         			System.out.println("Hidden words: " +notFinished);
@@ -147,7 +156,7 @@ public class WordSearch {
     public static String findWord (char[][] board, int [] move, String[] hiddenWords) {
     	
     	String line;
-    	String wordFound = null;
+    	String wordFound = "null";
     	
     	for (String hiddenWord : hiddenWords) {
 
