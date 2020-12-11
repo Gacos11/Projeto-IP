@@ -25,13 +25,13 @@ public class WordSearch {
         		
         		printPuzzle(board, hiddenWords);
         		int notFinished = hiddenWords.length;
-        		String wordFound; String wordsFound = "";
+				String wordFound; 
+				String wordsFound = "";
         		
         		do {
         			do {
         				
         				System.out.println();
-        				wordFound = "";
         				wordFound = findWord(board, readMove(sc, board.length, board[0].length), hiddenWords);
         				System.out.println(wordFound);
         				
