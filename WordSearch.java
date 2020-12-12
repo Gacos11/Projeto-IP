@@ -14,7 +14,6 @@ import java.util.Scanner;
 *@author Vasco Barros, fc54986
 */
 
-
 public class WordSearch {
 
     public static void main (String [] args){
