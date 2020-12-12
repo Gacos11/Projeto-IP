@@ -37,7 +37,8 @@ public class WordSearch {
         			do {
         				
         				System.out.println();
-						wordFound = findWord(board, readMove(sc, board.length, board[0].length), hiddenWords);
+						wordFound = findWord(board, readMove(sc, board.length, board[0].length), 
+						hiddenWords);
 						if (wordFound.contains("null")){
 							System.out.println("The move doesn't correspond to a hidden word.");
 						}
@@ -55,7 +56,8 @@ public class WordSearch {
         		System.out.println("Good work. All hidden words were found.");
         	}
         	else {
-        		System.out.println("Error: One or more of the hidden words isn't present in the puzzle.");
+				System.out.println("Error: One or more of the hidden words isn't present in the 
+				puzzle.");
         	}
         }
         else {
@@ -66,10 +68,10 @@ public class WordSearch {
     /**
      * Reverses a given String.
      * 
-     * @param word The variable with the String to be reversed
-     * @requires
-     * @ensures
-     * @return 
+     * @param word the string to be reversed
+     * @requires {code word is a string}
+     * @ensures to reverse every character of the given string
+     * @return string This returns the string, but reversed
      */
     private static String reverseString(String word){
         
@@ -82,13 +84,13 @@ public class WordSearch {
     }
     
     /**
+     * Determinates wether a word is hidden in the puzzle
      * 
-     * 
-     * @param board
-     * @param word
-     * @requires
-     * @ensures
-     * @return
+     * @param board The puzzle we are using, consists of an array
+     * @param word the String that we are checking if it's present in the Board
+     * @requires {code word != null && board is an array}
+     * @ensures the boolean is false if the word isn't hidden in the board and true if it is hidden
+     * @return boolean Returns true of false
      */
     public static boolean isHidden (char[][] board, String word){
         
@@ -113,13 +115,13 @@ public class WordSearch {
     }
     
     /**
+     * Determinates wether a game is valid or not
      * 
-     * 
-     * @param board
-     * @param hiddenWords
-     * @requires
-     * @ensures
-     * @return
+     * @param board The puzzle we are using, consists of an array
+     * @param hiddenWords the string wich contains all the hidden words in the game
+     * @requires {code hiddenWords != null && board is an array}
+     * @ensures the boolean is false if the game isn't valid and true if it is valid
+     * @return boolean Returns true or false
      */
     public static boolean isValidGame (char[][] board, String[] hiddenWords){
         
@@ -134,14 +136,14 @@ public class WordSearch {
     }
     
     /**
+     * Determinates wether a move is valid or not
      * 
-     * 
-     * @param move
-     * @param rows
-     * @param columns
-     * @requires
-     * @ensures
-     * @return
+     * @param move ---------
+     * @param rows --------
+     * @param columns ---------
+     * @requires {code move != null && rows > 0 && columns > 0}
+     * @ensures the boolean is false if the move isn't valid and tru if it is valid
+     * @return boolean Returns true or false
      */
     public static boolean isValidMove (int[] move, int rows, int columns) {
     	
@@ -176,7 +178,7 @@ public class WordSearch {
      * @param sc
      * @param rows
      * @param columns
-     * @requires
+     * @requires {code sc != null && rows > 0 && columns > 0} 
      * @ensures
      * @return
      */
@@ -207,14 +209,15 @@ public class WordSearch {
     }
     
     /**
+     * Determines wether a hidden word was found by the move
      * 
-     * 
-     * @param board
-     * @param move
-     * @param hiddenWords
-     * @requires
-     * @ensures
-     * @return
+     * @param board The puzzle we are using, consists of an array
+     * @param move -------
+     * @param hiddenWords the string wich contains all the hidden words in the game
+     * @requires {code board is an array &&  isValidGame(char[][] board, String[] hiddenWords) &&
+	 * isValidMove(move, board.length, board[0].length) }
+     * @ensures either the word found of null, if no words were foun
+     * @return string Returns null or the word found
      */
     public static String findWord (char[][] board, int [] move, String[] hiddenWords) {
     	
@@ -256,11 +259,11 @@ public class WordSearch {
     }
     
     /**
+     * Prints the whole puzzle and the number of words hidden within it
      * 
-     * 
-     * @param board
-     * @param hiddenWords
-     * @requires
+     * @param @param board The puzzle we are using, consists of an array
+     *  @param hiddenWords the string wich contains all the hidden words in the game
+     * @requires {code board is an array && hiddenWords != null}
      */
     public static void printPuzzle (char[][] board, String [] hiddenWords) {
     	
