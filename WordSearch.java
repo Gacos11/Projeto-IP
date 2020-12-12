@@ -1,8 +1,14 @@
 import java.util.Scanner;
 
 /**
+* The {@code WordSearch} class defines a set of procedures 
+* that recreate a simple version of the game.
+* 
+* The program can be tested using a *******       <---------------------------
+* given as an argument when running the class.
+* 
 * Compile:     javac WordSearch.java
-* Run:         java WordSearch
+* Run:         java WordSearch Puzzle.txt
 *
 *@author Duarte Ferreira, fc54981
 *@author Vasco Barros, fc54986
@@ -57,7 +63,15 @@ public class WordSearch {
         	System.out.println(puzzle.getErrorMsgs());
         }
     }  
-
+    
+    /**
+     * Reverses a given String.
+     * 
+     * @param word The variable with the String to be reversed
+     * @requires
+     * @ensures
+     * @return 
+     */
     private static String reverseString(String word){
         
         String reversedWord = "";
@@ -67,7 +81,16 @@ public class WordSearch {
         }
         return reversedWord;
     }
-
+    
+    /**
+     * 
+     * 
+     * @param board
+     * @param word
+     * @requires
+     * @ensures
+     * @return
+     */
     public static boolean isHidden (char[][] board, String word){
         
         boolean isHidden = false;
@@ -89,7 +112,16 @@ public class WordSearch {
         }
         return isHidden;
     }
-
+    
+    /**
+     * 
+     * 
+     * @param board
+     * @param hiddenWords
+     * @requires
+     * @ensures
+     * @return
+     */
     public static boolean isValidGame (char[][] board, String[] hiddenWords){
         
         boolean isValidGame = true;
@@ -102,6 +134,16 @@ public class WordSearch {
         return isValidGame;
     }
     
+    /**
+     * 
+     * 
+     * @param move
+     * @param rows
+     * @param columns
+     * @requires
+     * @ensures
+     * @return
+     */
     public static boolean isValidMove (int[] move, int rows, int columns) {
     	
     	boolean isValid = true;
@@ -129,6 +171,16 @@ public class WordSearch {
     	return isValid;
     }
     
+    /**
+     * 
+     * 
+     * @param sc
+     * @param rows
+     * @param columns
+     * @requires
+     * @ensures
+     * @return
+     */
     public static int [] readMove(Scanner sc, int rows, int columns) {
     	
     	boolean isValid = false;
@@ -155,6 +207,16 @@ public class WordSearch {
     	return move;
     }
     
+    /**
+     * 
+     * 
+     * @param board
+     * @param move
+     * @param hiddenWords
+     * @requires
+     * @ensures
+     * @return
+     */
     public static String findWord (char[][] board, int [] move, String[] hiddenWords) {
     	
     	String line;
@@ -193,6 +255,14 @@ public class WordSearch {
     	}
     	return wordFound;
     }
+    
+    /**
+     * 
+     * 
+     * @param board
+     * @param hiddenWords
+     * @requires
+     */
     public static void printPuzzle (char[][] board, String [] hiddenWords) {
     	
     	System.out.print("   ");
