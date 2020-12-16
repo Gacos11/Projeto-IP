@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="classes/" kind="src" path=""/>
+	<classpathentry kind="src" path="3ª Parte"/>
+	<classpathentry kind="src" path="2ªParte"/>
+	<classpathentry kind="src" path="1ªParte"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
