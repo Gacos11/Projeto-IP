@@ -1,4 +1,15 @@
 public class Puzzle {
+	private char [][] board;
+	private String [] hiddenWords;
+	private char [][] boardCopy;
+	
+	public static void main (String[] args) {
+		PuzzleReader puzzle = new PuzzleReader("Puzzle.txt");
+		char[][] board = puzzle.getPuzzle();
+		String [] hiddenWords = puzzle.getHiddenWords();
+		//isHidden(board, "");
+		//System.out.println(definesPuzzle(board, hiddenWords));
+	}
 
     /**
 	 * Reverses a given String.
@@ -19,6 +30,7 @@ public class Puzzle {
 	}
 
     private static boolean isHidden(char[][] board, String word){
+
         boolean isHidden = false;
 		for (char[] row : board) {				//Checks if hiddenWord is in a line of the puzzle
 			if (new String(row).contains(word) || new String(row).contains(reverseString(word))) {
@@ -40,11 +52,130 @@ public class Puzzle {
 			}
         }
         
-        for (int i = 0; i < board[0].length; i++){
-            for (int j = 0; j < board[j].length; j++){
-                
-            }
-        }
+		int size = board.length + board[0].length - 1;
+		
+		for (int i = 0; i < size ; i++){
+		StringBuilder diagonal = new StringBuilder();	
+			for (int j = 0; j < board.length; j++){
+				for (int k = 0; k < board[0].length; k++){
+					if (j + k == i){
+						diagonal.append(board[j][k]);
+					}
+				}
+			}
+			String diagonalString = new String(diagonal);
+			if (diagonalString.contains(word) || diagonalString.contains(reverseString(word))){
+				isHidden = true;
+			}
+			diagonal.delete(0, diagonal.length());
+		}
+
+		for (int i = 14; i < size + 14; i++){
+			StringBuilder diagonal = new StringBuilder();	
+			for (int j = 0; j < board.length; j++){
+				for (int k = board[0].length - 1; k >= 0; k--){
+					//System.out.println(i);
+					//System.out.println(k);
+					if (j + k == i){
+						//System.out.println(j);
+						//System.out.println(k);
+						//System.out.println(diagonal.append(board[j][k]));
+					}
+				}
+			}
+			//System.out.println();
+			String diagonalString = new String(diagonal);
+			if (diagonalString.contains(word) || diagonalString.contains(reverseString(word))){
+				isHidden = true;
+			}
+			diagonal.delete(0, diagonal.length());
+		}
+
 		return isHidden;
     }
+    
+    public static boolean definesPuzzle(char[][] board, String[] hiddenWords) {
+    	
+    	boolean isValid = true;
+		
+		if (hiddenWords.length == 0){
+			isValid = false;
+		}
+
+		for (String hiddenWord : hiddenWords){
+			if(!isHidden(board, hiddenWord)){
+				isValid = false;
+			}
+			if (hiddenWord.length() < 1){
+				isValid = false;
+			}
+		}
+		
+    	for (int i = 0; i < hiddenWords.length; i++) {
+    		for (int j = i + 1; j < hiddenWords.length; j++){
+				if (hiddenWords[i].equals(hiddenWords[j])){
+					isValid = false;
+				}
+			}
+		}
+		return isValid;
+	}
+	
+	public Puzzle (char [][] board, String [] hiddenWords){
+		this.board = board;
+		this.hiddenWords = hiddenWords;
+		this.boardCopy = board;
+	}
+
+	public int rows(){
+		return this.board.length;
+	}
+
+	public int columns(){
+		return this.board[0].length;
+	}
+
+	public int numberHiddenWords(){
+		return this.hiddenWords.length;
+	}
+
+	public char[][] board(){
+		return this.boardCopy;
+	}
+
+	public String getWord(Move move){
+		String line;
+		String wordFound = "null";
+
+		for (String hiddenWord : hiddenWords) {
+
+			if (move.startRow() == move.endRow()) {			//Checks if the word is in a line
+				line = String.valueOf(board[move.startRow() - 1]);
+				line = line.substring(move.startColumn() - 1, move.endColumn());
+
+				if (line.equals(hiddenWord)) {
+					wordFound = line;
+				} else if (reverseString(line).equals(hiddenWord)) {
+					wordFound = reverseString(line);
+				}
+			}
+
+			else if (move.startColumn() == move.endColumn()) {		//Checks if the word is in a column
+
+				StringBuilder sb = new StringBuilder();
+
+				for (int i = move.startRow(); i <= move.endRow(); i++) {
+					sb.append(board[i - 1][move.startColumn() - 1]);
+				}
+				String column = sb.toString();
+
+				if (column.equals(hiddenWord)) {
+					wordFound = column;
+				} else if (reverseString(column).equals(hiddenWord)) {
+					wordFound = reverseString(column);
+				}
+			}
+		}
+		return wordFound;
+	}
 }

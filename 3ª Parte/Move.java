@@ -11,9 +11,13 @@
 
 public class Move{
 
-	private final int [] pos1 = new int[1];
-	private final int [] pos2 = new int[1];
-	private final int [] size = new int[1];
+	private int r1;
+	private int r2;
+	private int c1;
+	private int c2;
+	private int lines;
+	private int cols;
+	
 	public static void main(String[] args) {
 		System.out.println(definesMove(1, 3, 10, 3, 11, 11));
 	}
@@ -42,27 +46,39 @@ public class Move{
 	}
 	
 	public Move(int row1, int col1, int row2, int col2, int rows, int columns) {
-		this.pos1[0] = row1;
-		this.pos1[1] = col1;
-		this.pos2[0] = row2;
-		this.pos2[1] = col2;
-		this.size[0] = rows;
-		this.size[1] = columns;
+		this.r1 = row1;
+		this.c1 = col1;
+		this.r2 = row2;
+		this.c2 = col2;
+		this.lines = rows;
+		this.cols = columns;
 	}
 	
-	public int [] startRow(){
-		return this.pos1;
+	public int startRow(){
+		return this.r1;
+	}
+	
+	public int startColumn() {
+		return this.c1;
 	}
 
-	public int [] endRow(){
-		return this.pos2;
+	public int endRow(){
+		return this.r2;
+	}
+
+	public int endColumn(){
+		return this.c2;
 	}
 
 	public Direction direction(){
 		return direction;
 	}
 
-	public int [] rows(){
-		return this.size;
+	public int rows(){
+		return this.lines;
+	}
+
+	public int columns(){
+		return this.cols;
 	}
 }
