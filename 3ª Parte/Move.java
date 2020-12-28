@@ -18,9 +18,6 @@ public class Move{
 	private int lines;
 	private int cols;
 	
-	public static void main(String[] args) {
-		System.out.println(definesMove(1, 3, 10, 3, 11, 11));
-	}
 	
 	/**
 	 * @param row1
