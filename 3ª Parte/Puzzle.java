@@ -1,15 +1,6 @@
 public class Puzzle {
 	private char [][] board;
 	private String [] hiddenWords;
-	private char [][] boardCopy;				//<---------------------- NAO SEI FAZER ISTO
-	
-	public static void main (String[] args) {
-		PuzzleReader puzzle = new PuzzleReader("Puzzle.txt");
-		char[][] board = puzzle.getPuzzle();
-		String [] hiddenWords = puzzle.getHiddenWords();
-		//isHidden(board, "");
-		//System.out.println(definesPuzzle(board, hiddenWords));
-	}
 
     /**
 	 * Reverses a given String.
@@ -31,8 +22,10 @@ public class Puzzle {
 
     private static boolean isHidden(char[][] board, String word){
 
-        boolean isHidden = false;
-		for (char[] row : board) {				//Checks if hiddenWord is in a line of the puzzle
+		boolean isHidden = false;
+
+		//Checks if hiddenWord is in a line of the puzzle
+		for (char[] row : board) {				
 			if (new String(row).contains(word) || new String(row).contains(reverseString(word))) {
 				isHidden = true;
 			}
@@ -124,7 +117,6 @@ public class Puzzle {
 	public Puzzle (char [][] board, String [] hiddenWords){
 		this.board = board;
 		this.hiddenWords = hiddenWords;
-		//this.boardCopy = board;								<-------- NAO SEI SE ISSO ESTA CERTO!!!!!
 	}
 
 	public int rows(){
@@ -140,12 +132,18 @@ public class Puzzle {
 	}
 
 	public char[][] board(){
-		return this.boardCopy;						//<------------ NAO SEI FAZER
+		char [][] boardCopy = new char [board.length][board[0].length];
+		for (int i = 0; i < board.length; i++){
+			for (int j = 0; j < board[0].length; j++){
+				boardCopy [i][j] = board[i][j];
+			}
+		}
+		return boardCopy;
 	}
 
 	public String getWord(Move move){
 		String line;
-		String wordFound = "null";
+		String wordFound;
 
 		for (String hiddenWord : hiddenWords) {
 

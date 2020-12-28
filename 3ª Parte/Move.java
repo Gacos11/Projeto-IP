@@ -11,13 +11,8 @@
 
 public class Move{
 
-	private int r1;
-	private int r2;
-	private int c1;
-	private int c2;
-	private int lines;
-	private int cols;
-	
+	private int [] pos1 = new int [2];
+	private int [] pos2 = new int [2];
 	
 	/**
 	 * @param row1
@@ -43,39 +38,36 @@ public class Move{
 	}
 	
 	public Move(int row1, int col1, int row2, int col2, int rows, int columns) {
-		this.r1 = row1;
-		this.c1 = col1;
-		this.r2 = row2;
-		this.c2 = col2;
-		this.lines = rows;
-		this.cols = columns;
+			this.pos1 [0] = row1;
+			this.pos1 [1] = col1;
+			this.pos2 [0] = row2;
+			this.pos2 [1] = col2;
 	}
 	
 	public int startRow(){
-		return this.r1;
+		return pos1[0];
 	}
 	
 	public int startColumn() {
-		return this.c1;
+		return pos1[1];
 	}
 
 	public int endRow(){
-		return this.r2;
+		return pos2[0];
 	}
 
 	public int endColumn(){
-		return this.c2;
+		return pos2[1];
 	}
 
 	public Direction direction(){
-		return direction;
 	}
 
 	public int rows(){
-		return this.lines;
+		return rows;
 	}
 
 	public int columns(){
-		return this.cols;
+		return columns;
 	}
 }
