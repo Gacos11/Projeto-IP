@@ -29,6 +29,7 @@ public class WordSearch {
     }
 
     public boolean isFinished(){
+        return (howManyFoundWords() == foundWords().length);
     }
 
     public boolean play(Move move){

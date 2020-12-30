@@ -61,6 +61,20 @@ public class Move{
 	}
 
 	public Direction direction(){
+		Direction direction;
+		if ((pos1[0] == pos2[0]) && (pos1[1] != pos2[1])){
+			direction = Direction[0];
+		}
+		else if ((pos1[0] != pos1[1]) && (pos1[1] == pos2[1])){
+			direction = Direction[1];
+		}
+		else if ((pos1[0] < pos2[0]) && (pos1[1] < pos2[1])){
+			direction = Direction[2];
+		}
+		else {
+			direction = Direction[3];
+		}
+		return direction;
 	}
 
 	public int rows(){

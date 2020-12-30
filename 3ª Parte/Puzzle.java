@@ -133,9 +133,9 @@ public class Puzzle {
 
 	public char[][] board(){
 		char [][] boardCopy = new char [board.length][board[0].length];
-		for (int i = 0; i < board.length; i++){
-			for (int j = 0; j < board[0].length; j++){
-				boardCopy [i][j] = board[i][j];
+		for (int line = 0; i < board.length; line++){
+			for (int column = 0; j < board[0].length; column++){
+				boardCopy [line][column] = board[line][column];
 			}
 		}
 		return boardCopy;
