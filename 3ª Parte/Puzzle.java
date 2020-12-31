@@ -120,15 +120,15 @@ public class Puzzle {
 	}
 
 	public int rows(){
-		return this.board.length;
+		return board.length;
 	}
 
 	public int columns(){
-		return this.board[0].length;
+		return board[0].length;
 	}
 
 	public int numberHiddenWords(){
-		return this.hiddenWords.length;
+		return hiddenWords.length;
 	}
 
 	public char[][] board(){
