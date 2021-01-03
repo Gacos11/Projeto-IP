@@ -42,7 +42,7 @@ public class Puzzle {
 				}
 			}
         }
-        
+
 		int size = board.length + board[0].length - 1;
 		
 		for (int i = 0; i < size ; i++){

@@ -1,13 +1,14 @@
+import java.util.Scanner;
+
 public class WordSearch {
 
     private PuzzleReader file = new PuzzleReader("Puzzle.txt");
     private Puzzle puzzle = new Puzzle(file.getPuzzle(), file.getHiddenWords());
     private String [] wordsFound = new String [puzzle.numberHiddenWords()];
     private Puzzle game;
-    private int wordPoints;
+    private int score;
     private int durationsInSeconds;
     private double currentTime;
-
     private static String reverseString(String word) {
 
 		String reversedWord = "";
@@ -19,9 +20,23 @@ public class WordSearch {
     }
     
     public WordSearch (Puzzle puzzle, int durationsInSeconds){
-        int gameDuration = puzzle.duration();
+
+        Scanner sc = new Scanner(System.in);
         this.durationsInSeconds = durationsInSeconds;
+        int gameDuration = duration();
         double meanTime = durationsInSeconds / puzzle.numberHiddenWords();
+        int wordPoints = puzzle().rows() * puzzle().columns() / 10;
+        double startTime = System.currentTimeMillis();
+        double currentTime = startTime;
+        int count = 0;
+
+            do{
+                Move move = new Move(sc, sc, sc, sc, puzzle().rows(), puzzle().columns());
+                if(play(move)){
+                    wordsFound [count] = getWord(move);
+                }
+                count++;
+            }while(!isFinished());
 
     }
 
@@ -42,21 +57,24 @@ public class WordSearch {
     }
 
     public int score(){
-        return wordPoints;
+        return score;
     }
 
     public boolean isFinished(){
-        return ((howManyFoundWords() == foundWords().length));
+        return ((howManyFoundWords() == foundWords().length) || (currentTime / 1000 > startTime / 1000 + duration() ));
     }
 
     public boolean play(Move move){
         boolean isHidden = false;
-        if(currentTime < duration()){
+        if (currentTime / 1000 < startTime / 1000 + duration()){
             for (String hiddenWord : puzzle.getHiddenWords()){
                 if (hiddenWord.equals(getWord(move))){
                     isHidden = true;
                 }
             }
+        }
+        else {
+            isFinished();
         }
         return isHidden;
     }
