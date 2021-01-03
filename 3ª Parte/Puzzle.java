@@ -1,6 +1,4 @@
 public class Puzzle {
-	private char [][] board;
-	private String [] hiddenWords;
 
     /**
 	 * Reverses a given String.
@@ -115,20 +113,20 @@ public class Puzzle {
 	}
 	
 	public Puzzle (char [][] board, String [] hiddenWords){
-		this.board = board;
+		this.puzzle = board;
 		this.hiddenWords = hiddenWords;
 	}
 
 	public int rows(){
-		return board.length;
+		return this.puzzle.length;
 	}
 
 	public int columns(){
-		return board[0].length;
+		return this.puzzle[0].length;
 	}
 
 	public int numberHiddenWords(){
-		return hiddenWords.length;
+		return this.hiddenWords.length;
 	}
 
 	public char[][] board(){
