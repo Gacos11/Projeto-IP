@@ -1,5 +1,7 @@
 public class Puzzle {
 
+	private char [][] puzzle;
+	private String [] hiddenWords;
     /**
 	 * Reverses a given String.
 	 * 
@@ -130,10 +132,10 @@ public class Puzzle {
 	}
 
 	public char[][] board(){
-		char [][] boardCopy = new char [board.length][board[0].length];
-		for (int line = 0; i < board.length; line++){
-			for (int column = 0; j < board[0].length; column++){
-				boardCopy [line][column] = board[line][column];
+		char [][] boardCopy = new char [puzzle.length][puzzle[0].length];
+		for (int line = 0; line < puzzle.length; line++){
+			for (int column = 0; column < puzzle[0].length; column++){
+				boardCopy [line][column] = puzzle[line][column];
 			}
 		}
 		return boardCopy;
@@ -141,13 +143,13 @@ public class Puzzle {
 
 	public String getWord(Move move){
 		String line;
-		String wordFound;
+		String wordFound = "";
 
 		for (String hiddenWord : hiddenWords) {
 
 			//See if the move corresponds to a word hidden in a line
 			if (move.startRow() == move.endRow()) {			
-				line = String.valueOf(board[move.startRow() - 1]);
+				line = String.valueOf(puzzle[move.startRow() - 1]);
 				line = line.substring(move.startColumn() - 1, move.endColumn());
 
 				if (line.equals(hiddenWord)) {
@@ -163,7 +165,7 @@ public class Puzzle {
 				StringBuilder sb = new StringBuilder();
 
 				for (int i = move.startRow(); i <= move.endRow(); i++) {
-					sb.append(board[i - 1][move.startColumn() - 1]);
+					sb.append(puzzle[i - 1][move.startColumn() - 1]);
 				}
 				String column = sb.toString();
 
@@ -175,11 +177,11 @@ public class Puzzle {
 			}
 
 			//See if the move corresponds to a hidden word diagonally
-			else if ((move.startRow < move.endRow) && (move.startColumn < move.endColumn)){
+			else if ((move.startRow() < move.endRow()) && (move.startColumn() < move.endColumn())){
 				StringBuilder sb = new StringBuilder();
 				int i = 0;
-				while ((move.startRow != move.endRow) && (move.startColumn != move.endColumn)){
-					sb.append(board[move.startRow - i - 1] [move.startColumn - i - 1]);
+				while ((move.startRow() != move.endRow()) && (move.startColumn() != move.endColumn())){
+					sb.append(puzzle[move.startRow() - i - 1] [move.startColumn() - i - 1]);
 					i++;
 				}
 				String diagonal = sb.toString();
@@ -191,13 +193,14 @@ public class Puzzle {
 			}
 
 			//See if the move corresponds to a hidden word diagonally
-			else if ((move.startRow < move.endRow) && (move.startColumn > move.endColumn)){
+			else if ((move.startRow() < move.endRow()) && (move.startColumn() > move.endColumn())){
 				StringBuilder sb = new StringBuilder();
 				int i = 0;
-				while ((move.startRow != move.endRow) && (move.startColumn != move.endColumn)){
-					sb.append(board[move.startRow + i - 1] [move.startColumn + i - 1]);
+				while ((move.startRow() != move.endRow()) && (move.startColumn() != move.endColumn())){
+					sb.append(puzzle[move.startRow() + i - 1] [move.startColumn() + i - 1]);
 					i++;
 				}
+				String diagonal = sb.toString();
 				if (diagonal.equals(hiddenWord)) {
 					wordFound = diagonal;
 				} else if (reverseString(diagonal).equals(hiddenWord)) {

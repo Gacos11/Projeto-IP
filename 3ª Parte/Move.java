@@ -12,6 +12,8 @@
 public class Move{
 
 	private int [] positions = new int [4];
+	private int rows;
+	private int columns;
 	
 	/**
 	 * @param row1
@@ -62,25 +64,25 @@ public class Move{
 	public Direction direction(){
 		Direction direction;
 		if ((positions[0] == positions[2]) && (positions[1] != positions[3])){
-			direction = Direction[0];
+			direction = Direction.HORIZONTAL;
 		}
 		else if ((positions[0] != positions[1]) && (positions[1] == positions[3])){
-			direction = Direction[1];
+			direction = Direction.VERTICAL;
 		}
 		else if ((positions[0] < positions[2]) && (positions[1] < positions[3])){
-			direction = Direction[2];
+			direction = Direction.DIAGONAL_RIGHT;
 		}
 		else {
-			direction = Direction[3];
+			direction = Direction.DIAGONAL_LEFT;
 		}
 		return direction;
 	}
 
 	public int rows(){
-		return rows;
+		return this.rows;
 	}
 
 	public int columns(){
-		return columns;
+		return this.columns;
 	}
 }

@@ -1,14 +1,18 @@
 import java.util.Scanner;
+import java.lang.System;
 
 public class WordSearch {
 
     private PuzzleReader file = new PuzzleReader("Puzzle.txt");
     private Puzzle puzzle = new Puzzle(file.getPuzzle(), file.getHiddenWords());
+    private String [] hiddenWords = file.getHiddenWords();
     private String [] wordsFound = new String [puzzle.numberHiddenWords()];
+    //private StringBuilder [] wordsFound = new StringBuilder [puzzle.numberHiddenWords()];
     private Puzzle game;
     private int score;
     private int durationsInSeconds;
     private double currentTime;
+    private int startTime = (int) System.currentTimeMillis();
     private static String reverseString(String word) {
 
 		String reversedWord = "";
@@ -26,14 +30,22 @@ public class WordSearch {
         int gameDuration = duration();
         double meanTime = durationsInSeconds / puzzle.numberHiddenWords();
         int wordPoints = puzzle().rows() * puzzle().columns() / 10;
-        double startTime = System.currentTimeMillis();
-        double currentTime = startTime;
+        int currentTime = startTime;
         int count = 0;
+        int [] playersMove = new int[4];
 
             do{
-                Move move = new Move(sc, sc, sc, sc, puzzle().rows(), puzzle().columns());
+                
+                Move move = new Move(playersMove[0] , playersMove[1], playersMove[2], playersMove[3], puzzle().rows(), puzzle().columns());
                 if(play(move)){
-                    wordsFound [count] = getWord(move);
+                    currentTime = currentTime + (int) System.currentTimeMillis();
+                    if (currentTime >= meanTime){
+                        score = score + wordPoints;
+                    }
+                    else{
+                        score = score + ((int) (1 + meanTime - currentTime) * wordPoints);
+                    }
+                    wordsFound [count] = puzzle.getWord(move);
                 }
                 count++;
             }while(!isFinished());
@@ -41,7 +53,7 @@ public class WordSearch {
     }
 
     public Puzzle puzzle(){
-        return puzzle.board();
+        return puzzle;
     }
 
     public int duration(){
@@ -49,11 +61,21 @@ public class WordSearch {
     }
 
     public int howManyFoundWords(){
-        return wordsFound.lenght;
+        int count = 0;
+        for (String wordFound : wordsFound){
+            if (wordFound != null){
+                count++;
+            }
+        }
+        return count;
     }
     
     public String [] foundWords(){
-        return wordsFound;
+        String [] foundWords = new String [howManyFoundWords()];
+        for (int i = 0; i < howManyFoundWords(); i++){
+            foundWords [i] = wordsFound [i];
+        }
+        return foundWords;
     }
 
     public int score(){
@@ -61,14 +83,14 @@ public class WordSearch {
     }
 
     public boolean isFinished(){
-        return ((howManyFoundWords() == foundWords().length) || (currentTime / 1000 > startTime / 1000 + duration() ));
+        return ((howManyFoundWords() == puzzle.numberHiddenWords()) || (currentTime / 1000 > startTime / 1000 + duration() ));
     }
 
     public boolean play(Move move){
         boolean isHidden = false;
         if (currentTime / 1000 < startTime / 1000 + duration()){
-            for (String hiddenWord : puzzle.getHiddenWords()){
-                if (hiddenWord.equals(getWord(move))){
+            for (String hiddenWord : hiddenWords){
+                if (hiddenWord.equals(puzzle.getWord(move))){
                     isHidden = true;
                 }
             }
@@ -80,6 +102,11 @@ public class WordSearch {
     }
 
     public String toString(){
+        StringBuilder result = new StringBuilder();
+        for (String hiddenWord : hiddenWords){
+            result.append(hiddenWord.toString()+ " ");
+        }
+        return result.toString();
     }
 
 }
