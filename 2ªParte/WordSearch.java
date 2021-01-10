@@ -129,6 +129,9 @@ public class WordSearch {
 			if (!isHidden(board, hiddenWord)) {
 				isValidGame = false;
 			}
+			else if (hiddenWord.length() <= 1){				//AQUIIIIIIIIIIIIIIIIII
+				isValidGame = false;
+			}
 		}
 		return isValidGame;
 	}
@@ -225,7 +228,6 @@ public class WordSearch {
 			if (move[0] == move[2]) {			//Checks if the word is in a line
 				line = String.valueOf(board[move[0] - 1]);
 				line = line.substring(move[1] - 1, move[3]);
-
 				if (line.equals(hiddenWord)) {
 					wordFound = line;
 				} else if (reverseString(line).equals(hiddenWord)) {

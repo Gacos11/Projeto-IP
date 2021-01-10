@@ -1,18 +1,27 @@
+/**
+ * The {@code WordSearch} class defines a set of procedures that recreate a
+ * simple version of the game.
+ * 
+ * @author Duarte Ferreira, fc54981
+ * @author Vasco Barros, fc54986
+ */
+
 import java.util.Scanner;
 import java.lang.System;
 
 public class WordSearch {
 
-    private PuzzleReader file = new PuzzleReader("Puzzle.txt");
-    private Puzzle puzzle = new Puzzle(file.getPuzzle(), file.getHiddenWords());
-    private String [] hiddenWords = file.getHiddenWords();
-    private String [] wordsFound = new String [puzzle.numberHiddenWords()];
-    //private StringBuilder [] wordsFound = new StringBuilder [puzzle.numberHiddenWords()];
-    private Puzzle game;
-    private int score;
+    private Puzzle puzzle;
+    private String [] hiddenWords;
+    private String [] wordsFound;
+    private int score = 0;
     private int durationsInSeconds;
-    private double currentTime;
-    private int startTime = (int) System.currentTimeMillis();
+    private long startTime = System.currentTimeMillis();
+    private long timeOfTheLastWordFound;
+    private long currentTime = startTime;
+    private int meanTime;
+    private int wordPoints;
+
     private static String reverseString(String word) {
 
 		String reversedWord = "";
@@ -24,32 +33,13 @@ public class WordSearch {
     }
     
     public WordSearch (Puzzle puzzle, int durationsInSeconds){
-
-        Scanner sc = new Scanner(System.in);
+        this.puzzle = puzzle;
+        hiddenWords = puzzle.getHiddenWords();
+        wordsFound = new String [puzzle.numberHiddenWords()];
         this.durationsInSeconds = durationsInSeconds;
         int gameDuration = duration();
-        double meanTime = durationsInSeconds / puzzle.numberHiddenWords();
-        int wordPoints = puzzle().rows() * puzzle().columns() / 10;
-        int currentTime = startTime;
-        int count = 0;
-        int [] playersMove = new int[4];
-
-            do{
-                
-                Move move = new Move(playersMove[0] , playersMove[1], playersMove[2], playersMove[3], puzzle().rows(), puzzle().columns());
-                if(play(move)){
-                    currentTime = currentTime + (int) System.currentTimeMillis();
-                    if (currentTime >= meanTime){
-                        score = score + wordPoints;
-                    }
-                    else{
-                        score = score + ((int) (1 + meanTime - currentTime) * wordPoints);
-                    }
-                    wordsFound [count] = puzzle.getWord(move);
-                }
-                count++;
-            }while(!isFinished());
-
+        meanTime = durationsInSeconds / puzzle.numberHiddenWords();
+        wordPoints = puzzle().rows() * puzzle().columns() / 10;
     }
 
     public Puzzle puzzle(){
@@ -62,8 +52,8 @@ public class WordSearch {
 
     public int howManyFoundWords(){
         int count = 0;
-        for (String wordFound : wordsFound){
-            if (wordFound != null){
+        for (int i = 0; i < wordsFound.length; i++){
+            if (wordsFound[i] != null){
                 count++;
             }
         }
@@ -73,25 +63,60 @@ public class WordSearch {
     public String [] foundWords(){
         String [] foundWords = new String [howManyFoundWords()];
         for (int i = 0; i < howManyFoundWords(); i++){
-            foundWords [i] = wordsFound [i];
+                foundWords [i] = wordsFound [i];
         }
         return foundWords;
     }
 
     public int score(){
+        currentTime = System.currentTimeMillis();
+        if (howManyFoundWords() == 1){
+            if ((int)currentTime/1000 - (int)startTime/1000 >= meanTime){
+                score = score + wordPoints;
+                timeOfTheLastWordFound = currentTime;
+            }
+            else{
+                score = score + (1 + meanTime - ((int)currentTime/1000 - (int)startTime/1000))*wordPoints;
+                timeOfTheLastWordFound = currentTime;
+            }
+        }
+        else{
+            if ((int)currentTime/1000 - (int)timeOfTheLastWordFound/1000 >= meanTime){
+                score = score + wordPoints;
+                timeOfTheLastWordFound = currentTime;
+            }
+            else{
+                score = score + (1 + meanTime - ((int)currentTime/1000 - (int)timeOfTheLastWordFound/1000))*wordPoints;
+                timeOfTheLastWordFound = currentTime;
+            }
+        }
         return score;
     }
 
     public boolean isFinished(){
-        return ((howManyFoundWords() == puzzle.numberHiddenWords()) || (currentTime / 1000 > startTime / 1000 + duration() ));
+        return ((howManyFoundWords() == puzzle.numberHiddenWords()) || ((int)currentTime/1000 > (int)startTime/1000 
+        + duration()));
     }
 
     public boolean play(Move move){
         boolean isHidden = false;
-        if (currentTime / 1000 < startTime / 1000 + duration()){
+        currentTime = System.currentTimeMillis();
+        if ((int)currentTime/1000 < (int)startTime/1000 + duration()){
             for (String hiddenWord : hiddenWords){
-                if (hiddenWord.equals(puzzle.getWord(move))){
-                    isHidden = true;
+                if (puzzle.getWord(move) != null){
+                    if (hiddenWord.equals(puzzle.getWord(move))){
+                        isHidden = true;
+                        for (int i = 0; i < wordsFound.length; i++){
+                            
+                            if ((wordsFound[i] == null)){
+                                wordsFound[i] = puzzle.getWord(move);
+                                return isHidden;
+                            }
+                            else if (wordsFound[i].equals(puzzle.getWord(move))){
+                                return false;
+                            }
+                        }
+                    }
                 }
             }
         }

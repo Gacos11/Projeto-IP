@@ -215,7 +215,7 @@ public class WordSearchTest{
 			for (int k = 0; k < words; k++)
 				System.out.print(game.foundWords()[k] + "  " );
 			System.out.println();
-			printIntTest("howManyFoundWords", words, nMoves / 2  + 1);
+			printIntTest("howManyFoundWords ", words, nMoves / 2  + 1);
 			System.out.println("> current score: " + game.score());
 			System.out.println("  (be aware this value can vary from run to run, since it depends on elapsed time)");
 
@@ -254,7 +254,7 @@ public class WordSearchTest{
 		if (obtained == expected)
 			System.out.println("  Ok "+ obtained);
 		else
-			System.out.println("  ERROR: obtained " + obtained + "but should be " + expected);
+			System.out.println("  ERROR: obtained " + obtained + " but should be " + expected);
 	}
 
 	public static void printStrTest(String methodName, String obtained, String expected){
@@ -270,7 +270,7 @@ public class WordSearchTest{
 		if (obtained.equals(expected))
 			System.out.println("  Ok  " + obtained.name());
 		else
-			System.out.println("  ERROR: obtained " + obtained.name() + "but should be " +  expected.name());
+			System.out.println("  ERROR: obtained " + obtained.name() + " but should be " +  expected.name());
 	}
 
 

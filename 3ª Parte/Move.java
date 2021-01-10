@@ -2,9 +2,6 @@
  * The {@code Move} class defines a set of procedures that recreate a
  * simple version of the game.
  * 
- * Compile: javac Move.java 
- * Run: java Move
- *
  * @author Duarte Ferreira, fc54981
  * @author Vasco Barros, fc54986
  */
@@ -35,6 +32,10 @@ public class Move{
 		if (row1 > row2 || col1 > col2) {
 			isValid = false;
 		}
+
+		if (row1 == row2 && col1 == col2){
+			isValid = false;
+		}
 		return isValid;
 	}
 	
@@ -43,6 +44,8 @@ public class Move{
 			this.positions [1] = col1;
 			this.positions [2] = row2;
 			this.positions [3] = col2;
+			this.rows = rows;
+			this.columns = columns;
 	}
 	
 	public int startRow(){
@@ -79,10 +82,10 @@ public class Move{
 	}
 
 	public int rows(){
-		return this.rows;
+		return rows;
 	}
 
 	public int columns(){
-		return this.columns;
+		return columns;
 	}
 }
