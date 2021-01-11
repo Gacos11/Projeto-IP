@@ -29,7 +29,16 @@ public class Puzzle {
 		return reversedWord;
 	}
 
-	
+	/**
+	 * Checks wheter a given word is hidden in a board
+	 * 
+	 * @param board is the board
+	 * @param word is a the word that may or not be hidden
+	 * @requires {@code board is a matrix && word != null}
+	 * @ensures the boolean is true if the word is hidden in the board, be it verticaly,
+	 * horizontaly, or diagonal, even if the letters are in reversed order
+	 * @return boolean true of false
+	 */
     private static boolean isHidden(char [][] board, String word){
 
 		char [][]  reversedBoard = board;
@@ -104,7 +113,18 @@ public class Puzzle {
 
 		return isHidden;
     }
-    
+	
+	/**
+	 * Checks if the the board and hiddenWords can define a puzzle
+	 * 
+	 * @param board is the matrix we are using as a board
+	 * @param hiddenWords is a string 
+	 * @requires {@code board is a matrix && hiddenWords != null}
+	 * @ensures the boolean is false if there are no hiddenWords, or hiddenWords has the same word
+	 * more than once and if one or more or the hiddenWords isn't hidden inside the board. The 
+	 * boolean is true if all the words are hidden inside the board.
+	 * @return boolean Returns true or false
+	 */
     public static boolean definesPuzzle(char[][] board, String[] hiddenWords) {
     	
     	boolean isValid = true;
@@ -132,23 +152,54 @@ public class Puzzle {
 		return isValid;
 	}
 	
+	/**
+	 * Creates a puzzle with the given data
+	 * 
+	 * @param board is the matrix we are using
+	 * @param hiddenWords is the words hidden inside the puzzle
+	 * @requires {@code definesPuzzle(board, hiddenWords)}
+	 */
 	public Puzzle (char [][] board, String [] hiddenWords){
 		this.puzzle = board;
 		this.hiddenWords = hiddenWords;
 	}
 
+	/**
+	 * Gives the number of rows in the board
+	 * 
+	 * @ensures the integer returned is equal to the number of rows in the board
+	 * @return integer Returns the number of rows on the board
+	 */
 	public int rows(){
 		return puzzle.length;
 	}
 
+	/**
+	 * Gives the number of columns in the board
+	 * 
+	 * @ensures the integer returned is equal to the number of columns in the board
+	 * @return integer Returns the number of columns on the board
+	 */
 	public int columns(){
 		return puzzle[0].length;
 	}
 
+	/**
+	 * Gives the number of words that are hidden
+	 * 
+	 * @ensures the integer returned is equal to the number of hidden words
+	 * @return integer Returns the number of hidden words
+	 */	
 	public int numberHiddenWords(){
 		return hiddenWords.length;
 	}
 
+	/**
+	 * Gives an independent copy of the board
+	 * 
+	 * @ensures the char returned is a copy of the board, but indenpendent
+	 * @return char Returns a copy of the board
+	 */
 	public char[][] board(){
 		char [][] boardCopy = new char [puzzle.length][puzzle[0].length];
 		for (int line = 0; line < puzzle.length; line++){
@@ -158,10 +209,21 @@ public class Puzzle {
 		}
 		return boardCopy;
 	}
+
+
 	public String [] getHiddenWords(){
 		return hiddenWords;
 	}
 
+
+	/**
+	 * Gives the word hidden in the space defined by move, if there is any
+	 * 
+	 * @requires {@code move != null && move.rows() == rows() && move.columns == columns()}
+	 * @ensures that the string returned is either teh hidden word in the position defined by 
+	 * move, or null
+	 * @return string Returns null or the word hidden
+	 */
 	public String getWord(Move move){
 		String line;
 		String wordFound = null;

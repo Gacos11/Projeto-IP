@@ -55,7 +55,6 @@ public class Move{
 	 * @param rows the number of rows in the board
 	 * @param columns the number of columns in the board
 	 * @requires {@code definesMove(row1, col1, row2, col2, rows, columns) is true}
-	 * @ensures to create a move with the given data
 	 */
 	public Move(int row1, int col1, int row2, int col2, int rows, int columns) {
 			this.positions [0] = row1;
@@ -127,7 +126,7 @@ public class Move{
 		}
 		return direction;
 	}
-	
+
 	/**
 	 * Gives the number of rows
 	 *
